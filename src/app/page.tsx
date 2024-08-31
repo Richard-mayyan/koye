@@ -1,113 +1,165 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { ShoppingBagIcon, UserIcon } from "lucide-react";
+import SliderPart from "./SliderPart";
+import ImgAndTe from "./ImgAndTe";
+import { cn } from "@/lib/utils";
+import Footer from "./footer";
+import Link from "next/link";
 
-export default function Home() {
+// export const metadata = {
+//   description: 'High-performance ecommerce store built with Next.js, Vercel, and Shopify.',
+//   openGraph: {
+//     type: 'website'
+//   }
+// };
+
+export const IMG_URL = "https://images.pexels.com/photos/787929/pexels-photo-787929.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+export const IMG_URL2 = "https://images.pexels.com/photos/1007018/pexels-photo-1007018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+export const IMG_URL_MODEL = "https://images.pexels.com/photos/1805411/pexels-photo-1805411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+export const PALETTE = {
+  yellow : "#B59C77"
+}
+export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+    <div style={{backgroundColor : PALETTE.yellow}} className='pt-2'>
+      <h1 className="text-center text-white text-[8px] mb-5">FREE DELIVERY OVER $24.99</h1>
+
+      <div className="max-w-[80%] flex justify-between items-center uppercase  mx-auto">
+        <h1 className='uppercase text-xl'>KÔYé</h1>
+        <ul className="md:flex space-x-16 text-xs hidden ">
+          <li>
+            <Link href="">About US</Link>
+          </li>
+          <li>
+            <Link href="">Blog</Link>
+          </li>
+          <li>
+            <Link href="">SHOP ALL</Link>
+          </li>
+
+        </ul>
+        <div className="flex space-x-4">
+          <UserIcon className="w-6 h-6" />
+          <ShoppingBagIcon className="w-6 h-6" />
         </div>
       </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="pb-2 mt-4">
+        <h1 className="text-center text-white text-3xl mb-2">TIMELESS,ELEGANT</h1>
+        <h1 className="text-center text-white text-[10px]">FOR PARISIAN WOMEN OF THE WORLD</h1>
       </div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+    </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+    <div 
+    style={{backgroundImage : `url('${IMG_URL}')`,backgroundSize : "cover",backgroundPosition : "center"}}
+    className="h-[400px] flex justify-center items-end">
+
+        <Button variant={"outline"} className="mb-10 text-[8px]">DISCOVER THE NEW COLLECTION</Button>
+
+    </div>
+
+
+    <div className="mt-10"></div>
+
+    <div className="max-w-3xl px-2 md:px-0   mx-auto">
+      <SliderPart />
+    </div>
+
+    <div className="mt-10"></div>
+    <ImgAndTe isEven={false}> 
+        <div className="">
+              <h1 className="text-2xl">The Muse</h1>
+              <p className="text-[10px] my-2">With “La Muse,” each piece is an ode to the contemporary woman—her strength, her elegance, and her ability to inspire and move. This collection also celebrates each woman’s ongoing journey toward her own inner muse.</p>
+              <Button variant={"outline"} className="text-[8px] text-black mt-6">DISCOVER THE MUSE</Button>
+          </div>
+    </ImgAndTe>
+
+
+    <div className="mt-10"></div>
+
+    <div className="max-w-[80%] mx-auto">
+      <div className="md:flex items-center  ">
+        <div className="w-1/3  ">
+            <div className="w-fit   relative ">
+                <div className="px-2">
+                  <div 
+                    style={{backgroundImage : `url('${IMG_URL}')`,backgroundSize : "cover",backgroundPosition : "center",border : "solid "+PALETTE.yellow}}
+                    className="h-[200px]  w-44 flex justify-center items-end">
+                  </div>
+                </div>
+
+                <div 
+                  style={{backgroundImage : `url('${IMG_URL_MODEL}')`,backgroundSize : "cover",backgroundPosition : "center",border : "solid "+PALETTE.yellow}}
+                  className="h-[150px] absolute -bottom-[20%] left-[50%] w-32 flex justify-center items-end">
+                </div>
+
+                <div 
+                  style={{backgroundImage : `url('${IMG_URL2}')`,backgroundSize : "cover",backgroundPosition : "center",border : "solid "+PALETTE.yellow}}
+                  className="h-[100px] absolute  -bottom-[45%] w-20 flex justify-center items-end">
+                </div> 
+                
+              </div>
+        </div>
+        <div className="w-1/3 "></div>
+
+        <div className="mt-40 md:mt-0 max-w-3xl">
+          <h1 className="text-2xl "><span className="uppercase">KÔYé</span> commits </h1>
+          <p className="text-[12px]  mt-6 text-muted-foreground">
+          KÔYÉ is not just a fashion brand; it is an embodiment of ethical principles and a sustainable vision. Each piece reflects a deep commitment to responsible practices, demonstrating a harmonious fusion of style and conscience. KÔYÉ is for the modern woman, proud of her choices and seeking meaning in every purchase.
+          Collection
           </p>
-        </a>
+        </div>
       </div>
-    </main>
+
+
+      <div className="mx-auto mt-36">
+        <SliderPart />
+      </div>
+    </div>
+
+
+    <div className="mt-10"></div>
+    <ImgAndTe isEven={true} >
+      <div className="">
+            <h1 className="text-2xl">The First Collection</h1>
+            <p className="text-[10px] my-2">A true tribute to the Parisian woman, this collection embodies the free, determined and elegant spirit of those who dare to defy conventions to leave their mark. Each piece is a chapter in this story, blending timeless refinement with contemporary audacity.</p>
+            <Button variant={"outline"} className="text-[8px] mt-6 text-black">DISCOVER THE COLLECTION</Button>
+        </div>
+    </ImgAndTe>
+
+    <div className="mt-10"></div>
+
+    <div className="grid md:grid-cols-3 gap-4 px-10 mx-auto py-20">
+      {[1,2,3].map((v,index) => {
+        return <div className={cn("",{
+          "mt-10" : index == 1
+        })}>
+            <div className="h-[300px]  object-cover rounded-lg border " 
+                style={{backgroundImage : `url('${IMG_URL_MODEL}')`,backgroundSize : "cover",backgroundPosition : "center",backgroundRepeat :"no-repeat"}}
+            > 
+            </div>
+             <p className=' my-2'>PAYLERA - $232.00</p>
+             <p className="text-[10px]">After about 35 years of periods, the menopause
+             comes along and puts a welcomed stop to the…</p>
+             <a href="" style={{color : PALETTE.yellow}} className="text-xs  mt-4">READ MORE</a>
+        </div>
+      })}
+    </div>
+
+    <Footer />
+
+
+
+
+
+
+      {/* <ThreeItemGrid />
+      <Carousel />
+      <Footer /> */}
+    </>
   );
 }
