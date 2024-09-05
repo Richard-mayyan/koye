@@ -5,6 +5,9 @@ import ImgAndTe from "./ImgAndTe";
 import { cn } from "@/lib/utils";
 import Footer from "./footer";
 import Link from "next/link";
+import CartModal from "@/components/cart/modal";
+import { defaultSort, IMG_URL, IMG_URL2, IMG_URL_MODEL, sorting } from "@/lib/constants";
+import { getProducts } from "@/lib/shopify";
 
 // export const metadata = {
 //   description: 'High-performance ecommerce store built with Next.js, Vercel, and Shopify.',
@@ -13,46 +16,27 @@ import Link from "next/link";
 //   }
 // };
 
-export const IMG_URL = "https://images.pexels.com/photos/787929/pexels-photo-787929.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-export const IMG_URL2 = "https://images.pexels.com/photos/1007018/pexels-photo-1007018.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-export const IMG_URL_MODEL = "https://images.pexels.com/photos/1805411/pexels-photo-1805411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-export const PALETTE = {
-  yellow : "#B59C77"
-}
-export default function HomePage() {
+// export const PALETTE = {
+//   yellow : "#B59C77"
+// }
+async function Page({
+  searchParams
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
+
+  const { sort, q: searchValue } = searchParams as { [key: string]: string };
+  const { sortKey, reverse } = sorting.find((item) => item.slug === sort) || defaultSort;
+
+  const products = await getProducts({ sortKey, reverse, query: searchValue });
+  const resultsText = products.length > 1 ? 'results' : 'result';
+
   return (
     <>
-    <div style={{backgroundColor : PALETTE.yellow}} className='pt-2'>
-      <h1 className="text-center text-white text-[8px] mb-5">FREE DELIVERY OVER $24.99</h1>
-
-      <div className="max-w-[80%] flex justify-between items-center uppercase  mx-auto">
-        <h1 className='uppercase text-xl'>KÔYé</h1>
-        <ul className="md:flex space-x-16 text-xs hidden ">
-          <li>
-            <Link href="">About US</Link>
-          </li>
-          <li>
-            <Link href="">Blog</Link>
-          </li>
-          <li>
-            <Link href="">SHOP ALL</Link>
-          </li>
-
-        </ul>
-        <div className="flex space-x-4">
-          <UserIcon className="w-6 h-6" />
-          <ShoppingBagIcon className="w-6 h-6" />
-        </div>
-      </div>
-
-      <div className="pb-2 mt-4">
-        <h1 className="text-center text-white text-3xl mb-2">TIMELESS,ELEGANT</h1>
-        <h1 className="text-center text-white text-[10px]">FOR PARISIAN WOMEN OF THE WORLD</h1>
-      </div>
-
-
+     <div className="pb-2  bg-appyellow">
+      <h1 className="text-center text-white text-3xl mb-2">TIMELESS,ELEGANT</h1>
+      <h1 className="text-center text-white text-[10px]">FOR PARISIAN WOMEN OF THE WORLD</h1>
     </div>
-
 
     <div 
     style={{backgroundImage : `url('${IMG_URL}')`,backgroundSize : "cover",backgroundPosition : "center"}}
@@ -65,8 +49,8 @@ export default function HomePage() {
 
     <div className="mt-10"></div>
 
-    <div className="max-w-3xl px-2 md:px-0   mx-auto">
-      <SliderPart />
+    <div className=" px-2 md:px-20   mx-auto">
+      <SliderPart products={products} />
     </div>
 
     <div className="mt-10"></div>
@@ -87,19 +71,19 @@ export default function HomePage() {
             <div className="w-fit   relative ">
                 <div className="px-2">
                   <div 
-                    style={{backgroundImage : `url('${IMG_URL}')`,backgroundSize : "cover",backgroundPosition : "center",border : "solid "+PALETTE.yellow}}
-                    className="h-[200px]  w-44 flex justify-center items-end">
+                    style={{backgroundImage : `url('${IMG_URL}')`,backgroundSize : "cover",backgroundPosition : "center"}}
+                    className="h-[200px]  w-44 flex justify-center items-end border border-appyellow">
                   </div>
                 </div>
 
                 <div 
-                  style={{backgroundImage : `url('${IMG_URL_MODEL}')`,backgroundSize : "cover",backgroundPosition : "center",border : "solid "+PALETTE.yellow}}
-                  className="h-[150px] absolute -bottom-[20%] left-[50%] w-32 flex justify-center items-end">
+                  style={{backgroundImage : `url('${IMG_URL_MODEL}')`,backgroundSize : "cover",backgroundPosition : "center"}}
+                  className="h-[150px] absolute -bottom-[20%] left-[50%] w-32 flex justify-center items-end border border-appyellow">
                 </div>
 
                 <div 
-                  style={{backgroundImage : `url('${IMG_URL2}')`,backgroundSize : "cover",backgroundPosition : "center",border : "solid "+PALETTE.yellow}}
-                  className="h-[100px] absolute  -bottom-[45%] w-20 flex justify-center items-end">
+                  style={{backgroundImage : `url('${IMG_URL2}')`,backgroundSize : "cover",backgroundPosition : "center"}}
+                  className="h-[100px] absolute  -bottom-[45%] w-20 flex justify-center items-end border border-appyellow">
                 </div> 
                 
               </div>
@@ -117,7 +101,7 @@ export default function HomePage() {
 
 
       <div className="mx-auto mt-36">
-        <SliderPart />
+        <SliderPart products={products} />
       </div>
     </div>
 
@@ -145,12 +129,11 @@ export default function HomePage() {
              <p className=' my-2'>PAYLERA - $232.00</p>
              <p className="text-[10px]">After about 35 years of periods, the menopause
              comes along and puts a welcomed stop to the…</p>
-             <a href="" style={{color : PALETTE.yellow}} className="text-xs  mt-4">READ MORE</a>
+             <a href=""  className="text-xs text-appyellow  mt-4">READ MORE</a>
         </div>
       })}
     </div>
 
-    <Footer />
 
 
 
@@ -163,3 +146,5 @@ export default function HomePage() {
     </>
   );
 }
+
+export default Page

@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "@/components/cart/cart-context";
+import { cookies } from 'next/headers';
+import { getCart } from "@/lib/shopify";
+import Navbar from "./navbar";
+import Footer from "./footer";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +20,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cartId = cookies().get('cartId')?.value;
+  // Don't await the fetch, pass the Promise to the context provider
+  const cart = getCart(cartId);
+
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <CartProvider cartPromise={cart}>
+          <Navbar />
+          {children}
+          <Footer />
+
+        </CartProvider>
+      </body>
     </html>
   );
 }

@@ -1,15 +1,14 @@
 "use client"
-import React from 'react'
+
+import { cn } from '@/lib/utils'
+// import { MoveLeftIcon, MoveRightIcon } from 'lucide-react'
+
 import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { ArrowLeftIcon, ArrowRightIcon, ArrowUpLeftIcon, MoveLeftIcon, MoveRightIcon } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import React from 'react'
 import { IMG_URL_MODEL } from '@/lib/constants';
-import { Product } from '@/lib/shopify/types';
-import Price from '@/components/price';
-import Link from 'next/link';
 
-
-function SliderPart({products} : {products : Product[]}) {
+function PrecedentNext() {
     const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
@@ -53,26 +52,13 @@ function SliderPart({products} : {products : Product[]}) {
     </div>
         <Carousel setApi={setApi} opts={{align : "center"}}>
         <CarouselContent>
-            {products.map((v,index) => {
+            {[1,2,3,4,5,6,7,8,2,3,4,5,6,7,8].map((v,index) => {
             return  <CarouselItem key={index} className="basis-1/2 md:basis-1/2 lg:basis-1/4">
-                <p className='text-[10px] my-2 flex'>{v.title} -   <Price
-              className="flex-none rounded-full  text-black"
-              amount={v.priceRange.maxVariantPrice.amount}
-              currencyCode={v.priceRange.maxVariantPrice.currencyCode}
-              currencyCodeClassName="hidden @[275px]/label:inline"
-            />
-           </p>
-
-           <Link
-              className="relative h-full w-full"
-              href={`/product/${v.handle}`}
-              prefetch={true}
-            >
+                <p className='text-[8px] my-2'>PAYLERA - $232.00</p>
             <div className="h-44  object-cover rounded-lg " 
-                style={{backgroundImage : `url('${v.featuredImage?.url}')`,backgroundSize : "cover",backgroundPosition : "center",backgroundRepeat :"no-repeat"}}
+                style={{backgroundImage : `url('${IMG_URL_MODEL}')`,backgroundSize : "cover",backgroundPosition : "center",backgroundRepeat :"no-repeat"}}
             > 
             </div>
-            </Link>
             </CarouselItem>
             })}
         </CarouselContent>
@@ -81,4 +67,4 @@ function SliderPart({products} : {products : Product[]}) {
   )
 }
 
-export default SliderPart
+export default PrecedentNext

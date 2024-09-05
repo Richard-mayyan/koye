@@ -1,12 +1,11 @@
 import React from 'react'
-import { PALETTE } from './page'
 import { Button } from '@/components/ui/button'
 import { FooterICONS } from './svgicons'
 
 function Footer() {
   return (
 <>
-  <footer style={{backgroundColor : PALETTE.yellow}} className="text-white pb-10">
+  <footer className="text-white pb-10 bg-appyellow">
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="lg:flex lg:items-start lg:gap-8 ">
         {/* <div className="text-teal-600">
@@ -89,7 +88,7 @@ function Footer() {
         <ul className="mt-6 space-y-4 text-sm">
             
          {v.values.map((v,i) => {
-            return  <li key={i}>
+            return  <li  key={i}>
             <a
               href={v.href}
               className="text-[10px] text-gray-200 transition hover:opacity-75"
@@ -103,31 +102,6 @@ function Footer() {
         </ul>
       </div>
        })}
-         
-         
-
-          {/* <div className="col-span-2 sm:col-span-1">
-            <p className="font-medium ">Shop</p>
-            <ul className="mt-6 space-y-4 text-sm">
-             {[
-                {href : "",label : "Nos collections"},
-                {href : "",label : "Guide de tailles"},
-                {href : "",label : "Nos conseils"},
-                {href : "",label : "Face aux questions"},
-            ].map((v,index) => {
-                return  <li key={index}>
-                <a
-                  href={v.href}
-                  className=" transition hover:opacity-75"
-                >
-                  {" "}
-                  {v.label}{" "}
-                </a>
-              </li>
-             })}
-           
-            </ul>
-          </div>  */}
         
         </div>
       </div>
