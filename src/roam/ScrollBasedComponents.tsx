@@ -32,18 +32,18 @@ const ScrollBasedComponents = ({UP,DOWN} : {UP:any , DOWN : any}) => {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
-          className="fixed top-0 left-0 w-full flex justify-center"
+          className="fixed top-0 left-0 w-full flex justify-center z-40"
         >
           {UP}
         </motion.div>
       )}
-      
+
       {scrollDirection === 'up' && (
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -50 }}
-          className="fixed top-10 left-0 w-full flex justify-center"
+          className="fixed top-10 left-0 w-full flex justify-center z-40"
         >
           {DOWN}
         </motion.div>
