@@ -26,7 +26,7 @@ function Footer() {
           <div className="col-span-2">
             <div>
               <h2 className="text-xs font-bold ">
-                JOIN THE KÔYÉ COMMUNITY
+                JOIN THE {config.siteName} COMMUNITY
               </h2>
               <p className="text-xs mt-4 ">
               Don't miss any news! To be informed about the latest collections, promotions and essential news, leave us your email address.

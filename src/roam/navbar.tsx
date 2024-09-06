@@ -29,7 +29,8 @@ function MyCmp({isUp,items} : {isUp : boolean,items : CardProp[]}) {
           </div>
             <p className={cn("text-5xl text-textColor text-center  ml-10 md:ml-0",a)}>{config.siteName}</p>
 
-           <MyNavigationList items={items} />
+           {/* <MyNavigationList items={items} /> */}
+
             <div className="flex items-center  md:space-x-4">
                 <UserIcon className={cn("w-8 h-8",a)} />
                 <div className="flex justify-end md:w-1/3">

@@ -58,7 +58,7 @@ const components: { title: string; href: string; description: string }[] = [
 
 export function MyNavigationList({items} : {items : CardProp[]}) {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="">
       <NavigationMenuList>
   
        {Array(6).fill(0).map((v,index) => {
