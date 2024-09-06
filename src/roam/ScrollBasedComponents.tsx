@@ -34,9 +34,7 @@ const ScrollBasedComponents = ({UP,DOWN} : {UP:any , DOWN : any}) => {
           exit={{ opacity: 0, y: 50 }}
           className="fixed top-0 left-0 w-full flex justify-center"
         >
-          {/* <p className='bg-green-400 w-full'>kjbkj</p> */}
           {UP}
-        
         </motion.div>
       )}
       {scrollDirection === 'up' && (
