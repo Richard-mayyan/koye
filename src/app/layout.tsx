@@ -4,8 +4,11 @@ import "./globals.css";
 import { CartProvider } from "@/components/cart/cart-context";
 import { cookies } from 'next/headers';
 import { getCart } from "@/lib/shopify";
-import Navbar from "./navbar";
+import Navbar from "@/roam/navbar";
 import Footer from "./footer";
+import { VideoBackground } from "@/roam/homepage/homepage";
+import { config } from "@/roam/config";
+import Link from "next/link";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -29,7 +32,20 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <CartProvider cartPromise={cart}>
+          <div className="bg-primaryBg text-secondBg text-xs text-center py-3 ">
+            <Link href={"/"}>
+              <p className="underline">FREE DELIVERY OVER {config.deliveryBase}</p>
+            </Link>
+          </div>
+
+        <div className='h-[100vh]'>
+          <VideoBackground> 
           <Navbar />
+          </VideoBackground>
+        </div>
+
+        
+          
           {children}
           <Footer />
 

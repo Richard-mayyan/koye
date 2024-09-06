@@ -28,6 +28,17 @@ const config = {
   				DEFAULT: 'hsl(var(--primary))',
   				foreground: 'hsl(var(--primary-foreground))'
   			},
+			textColor: {
+				DEFAULT: '#9B3920',
+			},
+			primaryBg: {
+				DEFAULT: '#9B3920',
+			},
+			secondBg: {
+				DEFAULT: '#FFF9EE',
+			},
+			
+
   			appyellow: {
   				DEFAULT: '#B59C77',
   				foreground: '#D6CDBD'
