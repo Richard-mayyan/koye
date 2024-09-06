@@ -50,22 +50,22 @@
 //         </div>
 //      </div>
 
-//      <div className={cn("",{
-//       "hidden" : onlyImages
-//      })}>
-//             <p className='text-black text-2xl font-light   md:text-[10px]  flex truncate  mt-2 '>{v.label} <span className='hidden md:block'>-</span>  <Price
-//                 className="flex-none rounded-full  text-black hidden md:block"
-//                 amount={v.price}
-//                 currencyCode={v.currencyCode}
-//                 currencyCodeClassName="hidden @[275px]/label:inline"
-//               />
-//           </p>
-//           <p className='text-black text-md   md:text-[10px]  flex truncate  mt-8 '>50ml • Sensation • Micro-biome prebiotic<span className='hidden md:block'>-</span>  
-//           </p>
-//           <div className='bg-black h-[1px] mb-8'></div>
+    //  <div className={cn("",{
+    //   "hidden" : onlyImages
+    //  })}>
+    //         <p className='text-black text-2xl font-light   md:text-[10px]  flex truncate  mt-2 '>{v.label} <span className='hidden md:block'>-</span>  <Price
+    //             className="flex-none rounded-full  text-black hidden md:block"
+    //             amount={v.price}
+    //             currencyCode={v.currencyCode}
+    //             currencyCodeClassName="hidden @[275px]/label:inline"
+    //           />
+    //       </p>
+    //       <p className='text-black text-md   md:text-[10px]  flex truncate  mt-8 '>50ml • Sensation • Micro-biome prebiotic<span className='hidden md:block'>-</span>  
+    //       </p>
+    //       <div className='bg-black h-[1px] mb-8'></div>
 
-//           <Button  className='bg-textColor uppercase text-[10px] py-0 font-bold'>Add to cart</Button>
-//      </div>
+    //       <Button  className='bg-textColor uppercase text-[10px] py-0 font-bold'>Add to cart</Button>
+    //  </div>
 
 
 //  </Link>

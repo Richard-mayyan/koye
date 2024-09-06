@@ -34,16 +34,11 @@ export default function RootLayout({
         <CartProvider cartPromise={cart}>
           <div className="bg-primaryBg text-secondBg text-xs text-center py-3 ">
             <Link href={"/"}>
-              <p className="underline">FREE DELIVERY OVER {config.deliveryBase}</p>
+              <p className="underline md:text-sm">FREE DELIVERY OVER {config.deliveryBase}</p>
             </Link>
           </div>
 
-        <div className='h-[100vh] md'>
-          <VideoBackground> 
-          <Navbar />
-          </VideoBackground>
-        </div>
-
+       
         
           
           {children}

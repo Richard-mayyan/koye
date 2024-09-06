@@ -9,6 +9,7 @@ import Price from '@/components/price';
 import Link from 'next/link';
 import { CardProp } from '@/roam/homepage/homepage';
 import clsx from 'clsx';
+import { SliderImgCmp } from './NewSliderCmp';
 
 function MoveSliderCmp({api} : {api:any}){
   return (
@@ -38,12 +39,7 @@ function MoveSliderCmp({api} : {api:any}){
  function SliderItem({v} : {v:CardProp}) {
   return (
     <div>
-    <p className='text-textColor text-lg uppercase  md:text-[10px]  flex truncate  '>{v.label} <span className='hidden md:block'>-</span>  <Price
-         className="flex-none rounded-full  text-black hidden md:block"
-         amount={v.price}
-         currencyCode={v.currencyCode}
-         currencyCodeClassName="hidden @[275px]/label:inline"
-       />
+    <p className='text-textColor text-lg uppercase  md:text-[10px]  flex truncate  lg:text-xl '>{v.label} 
    </p>
 
  <Link
@@ -51,20 +47,10 @@ function MoveSliderCmp({api} : {api:any}){
      href={`/product/${v.handle}`}
      prefetch={true}
    >
+    <SliderImgCmp className='h-[250px] lg:h-[350px]' src={v.img} handle={v.handle} />
 
 
-     <div className="group">
-<div
-className="h-[250px] rounded-lg transition duration-300 ease-in-out group-hover:brightness-[1.2]"
-style={{
-backgroundImage: `url('${v.img}')`,
-backgroundSize: "cover",
-backgroundPosition: "center",
-backgroundRepeat: "no-repeat",
-}}
->
-</div>
-     </div>
+
 
  </Link>
     </div>
@@ -101,7 +87,7 @@ function SliderPart({cardProps , buildMoveSliderCmp,LABEL,carouselClx} : {cardPr
         ></div>
     </div>
 
-    <div className='grid grid-cols-2 gap-4  '>
+    <div className='grid grid-cols-2 md:grid-cols-4 gap-4  '>
             {cardProps.slice(0,4).map((v,index) => {
             return  <div key={index} className="">
                        <SliderItem v={v}  />

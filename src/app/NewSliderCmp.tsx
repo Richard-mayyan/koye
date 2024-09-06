@@ -17,7 +17,7 @@ function MoveSliderCmp({api} : {api:any}){
               <MoveLeftIcon 
               onClick={() => api?.scrollPrev()}
               className={cn("text-black",{
-                "text-appyellow" : api?.canScrollPrev()
+                "text-textColor" : api?.canScrollPrev()
               })}
               />
                 <MoveRightIcon 
@@ -25,7 +25,7 @@ function MoveSliderCmp({api} : {api:any}){
                   api?.scrollNext()
                 }}
               className={cn("text-black",{
-                "text-appyellow" : api?.canScrollNext()
+                "text-textColor" : api?.canScrollNext()
               })}
               />
         </div>
@@ -122,6 +122,7 @@ function NewSlider({cardProps,Label,autoScroll,CustomContent} : {cardProps : Car
       <div className=' mt-10'>
         <div className="flex justify-between items-center ">
             {Label}
+           <MoveSliderCmp api={api} />
         </div>
       
     </div>

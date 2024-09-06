@@ -16,6 +16,7 @@ import NewSlider, { SliderImgCmp } from '@/app/NewSliderCmp';
 import { CarouselItem } from '@/components/ui/carousel';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import Price from '@/components/price';
 
 
 export interface CardProp {
@@ -43,7 +44,7 @@ export function getCardsItems(products :  Product[]) {
 
 function WhyChoose() {
   return (
-    <div className='bg-primaryBg py-14 px-4 space-y-6 text-secondBg'>
+    <div className='bg-primaryBg py-14 px-4 space-y-6 text-secondBg lg:h-full'>
     <p className=' text-3xl'>Why choose <span className='italic'>{config.siteName}</span>  </p>
     <p className='text-sm'>Lorem ipsum, dolor sit amet ccorporis aut. Harum, ipsum. Deserunt ea odit repellendus, recusandae odio nihil.  </p>
 
@@ -83,34 +84,46 @@ async function homepage({
   console.log(items)
   return (
     <div>
-        {/* <Navbar /> */}
+        <div className='h-[100vh] md'>
+          <VideoBackground> 
+          <Navbar items={items} />
+          </VideoBackground>
+        </div>
+
+
+
         <div className='mt-4'></div>
         <PartnersCarousel />
 
         <div className='px-2 pb-10'>
           {<SliderPart cardProps={items}
-           carouselClx="hidden md:flex" 
+           carouselClx="hidden" 
            LABEL={<p className='text-sm'>SHOP BY CATEGORY</p>}
             />}
         </div>
 
-        <div className='h-[450px]  relative'>
-          <div className=''>
-              <video
-              className="absolute top-0 left-0 w-full h-full object-cover"
-              autoPlay
-              loop
-              muted
-            >
-              <source src="/bgvideo2.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+       <div className='lg:flex lg:h-[500px]'>
+          <div className=' bg-red-800 lg:w-1/2 lg:h-full h-[450px]  relative'>
+              <div className=''>
+                  <video
+                  className="absolute top-0 left-0 w-full h-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                >
+                  <source src="/bgvideo2.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
 
-            
-          </div>
-        </div>
+                
+              </div>
+            </div>
 
-       <WhyChoose />
+            <div className='lg:w-1/2 h-full bg-green-500 overflow-hidden'>
+              <WhyChoose />
+            </div>
+
+       </div>
 
         <div className='px-2 pb-10'>
         <NewSlider autoScroll  cardProps={items}
@@ -120,32 +133,48 @@ async function homepage({
             </div>} 
 
           CustomContent={items.map((v,index) => {
-            return  <CarouselItem key={index} className="basis-4/5  ">
-                       <SliderImgCmp handle={v.handle} src={v.img} className='' />
+            return  <CarouselItem key={index} className="basis-4/5 lg:basis-1/4  ">
+                       <SliderImgCmp handle={v.handle} src={v.img} className='h-[250px] lg:h-[320px]' />
                       <div className={cn("",{
                       })}>
-                              <p className='text-black text-2xl font-light   md:text-[10px]  flex truncate  mt-2 '>{v.label}
+                              <p className='text-black text-2xl font-light     flex truncate  mt-2 '>{v.label}
                             </p>
-                            <p className='text-black text-md   md:text-[10px]  flex truncate  mt-8 '>50ml • Sensation • Micro-biome prebiotic<span className='hidden md:block'>-</span>  
+                            <p className='text-black text-md   md:text-[0.9rem]  flex truncate  mt-8 '>50ml • Sensation • Micro-biome prebiotic<span className='hidden md:block'>-</span>  
                             </p>
                             <div className='bg-black h-[1px] mb-8'></div>
 
-                            <Button  className='bg-textColor uppercase text-[10px] py-0 font-bold'>Add to cart</Button>
+                            <div className=" hidden lg:flex items-center space-x-2">
+                              <Button  className='bg-textColor uppercase lg:text-md text-[10px] py-0 font-bold lg:text-[12px] lg:px-6 lg:py-5'>Add to cart</Button>
+
+                              <Price
+                                    className="flex justify-end space-y-2 text-right text-sm font-bold text-textColor"
+                                    amount={v.price}
+                                    currencyCode={v.currencyCode}
+                                  />
+
+                            </div>
+
                       </div>
                   </CarouselItem>
             })}
         carouselClx={undefined} />
+
+        
         </div> 
 
         <div className='mt-4'></div>
-        <BienFaitCarousel />
-        <div className='mt-4'></div>
+          <BienFaitCarousel />
+        <div className='mt-10'></div>
 
 
-        <div className='space-y-6'>
-          <p className='text-textColor text-center text-sm uppercase font-semibold'>Verified {config.siteName} reviews</p>
-          <img className='w-36 mx-auto' src="https://a.storyblok.com/f/153121/648x905/42c81a17b0/home_review.png/m/400x0/" alt="" />
-          <TestimonialSlider />
+
+
+        <div className='space-y-6 lg:flex'>
+            <img className='w-36 lg:w-1/3 mx-auto' src="https://a.storyblok.com/f/153121/648x905/42c81a17b0/home_review.png/m/400x0/" alt="" />
+            <div className='lg:w-1/2 '>
+              <p className='text-textColor text-center text-sm lg:hidden uppercase font-semibold'>Verified {config.siteName} reviews</p>
+              <TestimonialSlider />
+            </div>
           
         </div>
 
@@ -159,7 +188,7 @@ async function homepage({
             </div>} 
 
           CustomContent={items.map((v,index) => {
-            return  <CarouselItem key={index} className="basis-4/5  ">
+            return  <CarouselItem key={index} className="basis-4/5 lg:basis-2/5 ">
                       <SliderImgCmp handle={v.handle} src={v.img} className='h-[400px]' />
 
                   </CarouselItem>
@@ -171,7 +200,7 @@ async function homepage({
 
 
 
-        <div className='h-[400px]'>
+        <div className='h-[400px] lg:h-[80vh]'>
           <ImagesViews imgs={products.map((v) => v.featuredImage.url!)} />
         </div>
 
@@ -190,7 +219,7 @@ async function homepage({
             </div>} 
 
           CustomContent={items.map((v,index) => {
-            return  <CarouselItem key={index} className="basis-4/5  ">
+            return  <CarouselItem key={index} className="basis-4/5 lg:basis-2/5 ">
                       <SliderImgCmp handle={v.handle} src={v.img} className='h-[400px]' />
 
                   </CarouselItem>
@@ -249,6 +278,20 @@ async function homepage({
 export default homepage
 
 const VideoBackground = ({children} : any) => {
+  const phoneUpgrade = <div className='md:hidden text-4xl text- mx-auto   mt-32 max-w-[70%] space-y-2 text-center text-secondBg '>
+    <p className='text-[40px]  '>Upgrade your</p>
+    <p className='text-[36px]   '>next <span className='italic'>date night</span></p>
+    <p className='text-sm max-w-sm text-center leading-5 uppercase  mx-auto'>Try sensational lubricants with flora protecting microbiome</p>
+    <div className='w-fit mx-auto'>
+      <Button size={"lg"} variant={"roam"}>Shop the new range</Button>
+    </div>
+  </div>;
+
+
+  const tabUpgrade = <div className='hidden md:block md:bg-primaryBg text-4xl text- mx-auto    pt-32 pb-40 max-w-[70%] md:max-w-full md:h-44 space-y-2 text-center text-secondBg z-20 '>
+    <p className='text-[3.6rem] mb-2  '>Upgrade your  next <span className='italic'>date night</span> </p>
+    <p className='  text-[1rem] text-center uppercase  mx-auto'>Try sensational lubricants with flora protecting microbiome</p>
+  </div>;
   return (
     <div className="relative w-full h-full ">
       {/* Vidéo en background */}
@@ -264,26 +307,35 @@ const VideoBackground = ({children} : any) => {
 
 
     
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden ">
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden  ">
 
-        <Navbar />
-        <div className='text-4xl text- mx-auto   mt-32 max-w-[70%] space-y-2 text-center text-secondBg'>
-          <p className='text-[40px]  '>Upgrade your</p>
-          <p className='text-[36px]   '>next <span className='italic'>date night</span></p>
-          <p className='text-sm max-w-sm text-center leading-5 uppercase '>Try sensational lubricants with flora protecting microbiome</p>
-          <div className='w-fit mx-auto'>
-            <Button size={"lg"} variant={"roam"}>Shop the new range</Button>
-          </div>
-        </div>
-        <div className='h-full sm:h-fit  w-full sm:max-w-[400px]  mx-auto md:mx-auto '>
-          <img
-            src="/homevideobgimg.webp"
-            alt="Overlay Image"
-            className="w-full md:mx-auto max-w-lg  mt-10"
-          />
+        <div className="relative h-full">
+            {/* <Navbar ite /> */}
+            {children}
+            {phoneUpgrade}
+            {tabUpgrade}
 
+            {/* <div className='bg-primaryBg h-44 z-10 absolute'></div> */}
+
+
+            <div className='h-full sm:h-fit  w-full sm:max-w-[400px]  mx-auto md:mx-auto'>
+              <img
+                src="/homevideobgimg.webp"
+                alt="Overlay Image"
+                className="w-full md:mx-auto  mt-10 sm:-mt-28"
+              />
+              <div className='w-fit mx-auto sm:block sm:-mt-8 hidden'>
+                <Button size={"lg"} variant={"roam"}>Shop the new range</Button>
+              </div>
+            </div>
         </div>
+
+
+
       </div>
+
+
+
     </div>
   );
 };

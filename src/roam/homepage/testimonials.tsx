@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star } from 'lucide-react';
+import { config } from '../config';
 
 const testimonials = [
   { id: 1, text: "This product has changed my life. Absolutely wonderful!" },
@@ -21,24 +22,26 @@ const TestimonialSlider: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-40 flex items-center justify-center">
+    <div className="relative w-full h-40 lg:h-full  flex items-center justify-center">
       <AnimatePresence>
         {testimonials.map((testimonial, index) => (
           currentIndex === index && (
             <motion.div
               key={testimonial.id}
-              className="absolute text-center text-2xl font-light text-gray-800"
+              className="absolute lg:leading-[4rem] font-light text-gray-800"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.6 }}
             >
-                <p className='mb-10'>"{testimonial.text}"</p>
-                <div className='flex w-fit mx-auto'>
+              <p className='text-textColor  uppercase font-semibold mb-10 text-lg'>Verified {config.siteName} reviews</p>
+
+                <p className='mb-10 lg:text-[3rem] '>"{testimonial.text}"</p>
+                <div className='flex w-fit mx-auto lg:mx-0'>
                     <div className='flex space-x-1'>
                         {Array(5).fill(0).map((v,index) => <Star fill='#9b3920'  className='w-4 h-4 text-textColor' />)}
                     </div>
-                    <p className='text-textColor text-xs ml-4'>CA on  <a href="">TRUSTPILOT</a> </p>
+                    <p className='text-textColor text-xs ml-4 '>CA on  <a href="">TRUSTPILOT</a> </p>
 
                 </div>
             </motion.div>
