@@ -11,26 +11,26 @@ import { CardProp } from '@/roam/homepage/homepage';
 import clsx from 'clsx';
 import { SliderImgCmp } from './NewSliderCmp';
 
-function MoveSliderCmp({api} : {api:any}){
-  return (
-    <div className='md:flex space-x-2  cursor-pointer hidden  '>
-              <MoveLeftIcon 
-              onClick={() => api?.scrollPrev()}
-              className={cn("text-black",{
-                "text-appyellow" : api?.canScrollPrev()
-              })}
-              />
-                <MoveRightIcon 
-                onClick={() => {
-                  api?.scrollNext()
-                }}
-              className={cn("text-black",{
-                "text-appyellow" : api?.canScrollNext()
-              })}
-              />
-        </div>
-  )
-}
+// function MoveSliderCmp({api} : {api:any}){
+//   return (
+//     <div className='md:flex space-x-2  cursor-pointer hidden  '>
+//               <MoveLeftIcon 
+//               onClick={() => api?.scrollPrev()}
+//               className={cn("text-black",{
+//                 "text-appyellow" : api?.canScrollPrev()
+//               })}
+//               />
+//                 <MoveRightIcon 
+//                 onClick={() => {
+//                   api?.scrollNext()
+//                 }}
+//               className={cn("text-black",{
+//                 "text-appyellow" : api?.canScrollNext()
+//               })}
+//               />
+//         </div>
+//   )
+// }
 //  function buildMoveSliderCmp(api : any) {
 //   return <MoveSliderCmp api={undefined} />
 // }

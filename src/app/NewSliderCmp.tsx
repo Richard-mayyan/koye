@@ -16,7 +16,7 @@ function MoveSliderCmp({api} : {api:any}){
     <div className='md:flex space-x-2  cursor-pointer hidden  '>
               <MoveLeftIcon 
               onClick={() => api?.scrollPrev()}
-              className={cn("text-black",{
+              className={cn("text-black  lg:w-10 lg:h-10",{
                 "text-textColor" : api?.canScrollPrev()
               })}
               />
@@ -24,7 +24,7 @@ function MoveSliderCmp({api} : {api:any}){
                 onClick={() => {
                   api?.scrollNext()
                 }}
-              className={cn("text-black",{
+              className={cn("text-black lg:w-10 lg:h-10",{
                 "text-textColor" : api?.canScrollNext()
               })}
               />

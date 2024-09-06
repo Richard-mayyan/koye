@@ -34,9 +34,9 @@ const TestimonialSlider: React.FC = () => {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.6 }}
             >
-              <p className='text-textColor  uppercase font-semibold mb-10 text-lg'>Verified {config.siteName} reviews</p>
+              <p className='text-textColor  uppercase font-semibold mb-10 hidden lg:block text-lg'>Verified {config.siteName} reviews</p>
 
-                <p className='mb-10 lg:text-[3rem] '>"{testimonial.text}"</p>
+                <p className='mb-10 text-[2rem] lg:text-[3rem] px-4 text-center lg:text-left '>"{testimonial.text}"</p>
                 <div className='flex w-fit mx-auto lg:mx-0'>
                     <div className='flex space-x-1'>
                         {Array(5).fill(0).map((v,index) => <Star fill='#9b3920'  className='w-4 h-4 text-textColor' />)}

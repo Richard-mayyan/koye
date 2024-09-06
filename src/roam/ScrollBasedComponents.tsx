@@ -25,14 +25,14 @@ const ScrollBasedComponents = ({UP,DOWN} : {UP:any , DOWN : any}) => {
   }, []);
 
   return (
-    <div className="relative w-full bg-red-800">
+    <div className="relative w-full bg-yellow-200 ">
       {/* Composant affiché lors du scroll vers le bas */}
       {scrollDirection === 'down' && (
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
-          className="fixed top-0 left-0 w-full flex justify-center z-40"
+          className="fixed top-0 left-0 w-full flex justify-center z-40   "
         >
           {UP}
         </motion.div>
@@ -43,7 +43,10 @@ const ScrollBasedComponents = ({UP,DOWN} : {UP:any , DOWN : any}) => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -50 }}
-          className="fixed top-10 left-0 w-full flex justify-center z-40"
+          style={{
+            transform : "translateX(50%)"
+          }}
+          className="fixed top-10 left-0 right-0 mx-auto   w-full flex justify-center z-40 lg:w-[80%]  "
         >
           {DOWN}
         </motion.div>

@@ -18,7 +18,7 @@ function MyCmp({isUp,items} : {isUp : boolean,items : CardProp[]}) {
         'text-textColor' : !isUp,
     }
   return (
-    <div className='bg-transparent md:bg-primaryBg w-full '>
+    <div className='w-full '>
         <div className={cn("flex justify-between items-center  py-1 text-secondBg px-2",{
             "bg-secondBg" : !isUp,
             'text-textColor' : isUp,
@@ -29,7 +29,9 @@ function MyCmp({isUp,items} : {isUp : boolean,items : CardProp[]}) {
           </div>
             <p className={cn("text-5xl text-textColor text-center  ml-10 md:ml-0",a)}>{config.siteName}</p>
 
-           {/* <MyNavigationList items={items} /> */}
+           <div className='hidden md:flex'>
+           <MyNavigationList items={items} />
+           </div>
 
             <div className="flex items-center  md:space-x-4">
                 <UserIcon className={cn("w-8 h-8",a)} />
@@ -50,7 +52,7 @@ function MyCmp({isUp,items} : {isUp : boolean,items : CardProp[]}) {
 function Navbar({items} : {items : CardProp[]}) {
    
   return (
-    <div className='relative'>
+    <div className='relative bg-green-700 p-4 bg-transparent md:bg-primaryBg w-full'>
 
     <ScrollBasedComponents UP={<MyCmp items={items} isUp={false} />}  DOWN={<MyCmp items={items} isUp={true} />} />
 

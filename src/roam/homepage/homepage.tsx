@@ -95,7 +95,7 @@ async function homepage({
         <div className='mt-4'></div>
         <PartnersCarousel />
 
-        <div className='px-2 pb-10'>
+        <div className='px-4 pb-10'>
           {<SliderPart cardProps={items}
            carouselClx="hidden" 
            LABEL={<p className='text-sm'>SHOP BY CATEGORY</p>}
@@ -143,7 +143,7 @@ async function homepage({
                             </p>
                             <div className='bg-black h-[1px] mb-8'></div>
 
-                            <div className=" hidden lg:flex items-center space-x-2">
+                            <div className="flex items-center justify-between space-x-2">
                               <Button  className='bg-textColor uppercase lg:text-md text-[10px] py-0 font-bold lg:text-[12px] lg:px-6 lg:py-5'>Add to cart</Button>
 
                               <Price
@@ -170,21 +170,21 @@ async function homepage({
 
 
         <div className='space-y-6 lg:flex'>
+              <p className='text-textColor text-center text-sm lg:hidden uppercase font-semibold'>Verified {config.siteName} reviews</p>
             <img className='w-36 lg:w-1/3 mx-auto' src="https://a.storyblok.com/f/153121/648x905/42c81a17b0/home_review.png/m/400x0/" alt="" />
             <div className='lg:w-1/2 '>
-              <p className='text-textColor text-center text-sm lg:hidden uppercase font-semibold'>Verified {config.siteName} reviews</p>
               <TestimonialSlider />
             </div>
           
         </div>
 
-        <div className='px-2 pb-10'>
+        <div className='px-2 pb-10 mt-20'>
           <NewSlider autoScroll  cardProps={items}
           Label={
               <div className='w-full text-sm'>
               <p>IN BED WITH</p>
               <div className='bg-black h-[1px] mb-2'></div>
-              <p className='mb-4'>Pictures of {config.siteName} shared by our customers</p>
+              <p className='mb-10'>Pictures of {config.siteName} shared by our customers</p>
             </div>} 
 
           CustomContent={items.map((v,index) => {
@@ -200,11 +200,19 @@ async function homepage({
 
 
 
-        <div className='h-[400px] lg:h-[80vh]'>
-          <ImagesViews imgs={products.map((v) => v.featuredImage.url!)} />
-        </div>
+        {/* <div className='h-[400px] lg:h-[80vh]'>
+        </div> */}
 
-       <WhyChoose />
+        <div className='lg:flex lg:h-[500px]'>
+          <div className=' bg-red-800 lg:w-1/2 lg:h-full h-[450px]  relative'>
+            <ImagesViews imgs={products.map((v) => v.featuredImage.url!)} />
+            </div>
+
+            <div className='lg:w-1/2 h-full bg-green-500 overflow-hidden'>
+              <WhyChoose />
+            </div>
+
+       </div>
 
        {/* <div className='px-2 pb-10'>
           {<SliderOneLine onlyImages autoScroll label='AS SEEN IN THE PRESS AND AVERTISING' cardProps={items} />}
@@ -249,17 +257,21 @@ async function homepage({
 
 
 <div className='px-2 pb-10 bg-[#F0E8DA] py-2'>
-          <NewSlider autoScroll  cardProps={items}
+          <NewSlider  cardProps={items}
           Label={
               <div className='w-full text-sm'>
               <p className='font-normal'>LATEST FROM ROAM</p>
               <div className='bg-black h-[1px] mb-5'></div>
             </div>} 
 
-          CustomContent={items.map((v,index) => {
-            return  <CarouselItem key={index} className="basis-3/5  ">
-                      <SliderImgCmp handle={v.handle} src={v.img} className='h-[280px]' />
-                      <p className='font-light text-xl my-2'>{v.label}</p>
+          CustomContent={items.slice(0,3).map((v,index) => {
+            return  <CarouselItem key={index} className="basis-3/5 lg:basis-1/3 ">
+                      <SliderImgCmp handle={v.handle} src={v.img} className={cn("h-[280px] lg:h-[400px]",{
+                        "mt-10" : index %2!=0,
+                        // "border h-[80px]" : index %2==0,
+                      })} />
+                      <p className='font-light text-2xl lg:text-3xl my-2'>{v.label}</p>
+                      <p className='font-light text-md my-2'>Lorem, ipsum dolor sit amet explicabo minima, reprehenderit aliquam similique t?</p>
                       <Link className='text-textColor text-sm underline' href={"/"}>READ MORE</Link>
 
                   </CarouselItem>
