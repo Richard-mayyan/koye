@@ -37,6 +37,7 @@ const ScrollBasedComponents = ({UP,DOWN} : {UP:any , DOWN : any}) => {
           {UP}
         </motion.div>
       )}
+      
       {scrollDirection === 'up' && (
         <motion.div
           initial={{ opacity: 0, y: 50 }}
