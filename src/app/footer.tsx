@@ -46,7 +46,7 @@ function Footer() {
                   placeholder="Email"
                   className="w-full mb-2  p-2 border placeholder:text-white border-gray-300 bg-transparent focus:border-transparent focus:ring-transparent sm:text-sm"
                 />
-                <Button variant={"outline"} className='w-full text-black text-xs'>SIGN UP</Button>
+                <Button variant={"roam"} className='w-full text-black text-xs'>SIGN UP</Button>
                 <p className='text-[10px] mt-4'>
                 By signing up, you agree to e-mail marketing. You can opt-out at any time.
                 Read more in our Privacy Policy

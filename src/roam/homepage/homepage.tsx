@@ -8,10 +8,14 @@ import { defaultSort, sorting } from '@/lib/constants';
 import { getProducts } from '@/lib/shopify';
 import { config } from '../config';
 import { HeartIcon } from 'lucide-react';
-import SliderOneLine from '@/app/SliderOneLine';
+// import SliderOneLine from '@/app/SliderOneLine';
 import BienFaitCarousel from './BienFaitCarousel';
 import TestimonialSlider from './testimonials';
 import ImagesViews from './ImagesViews';
+import NewSlider, { SliderImgCmp } from '@/app/NewSliderCmp';
+import { CarouselItem } from '@/components/ui/carousel';
+import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 
 export interface CardProp {
@@ -80,10 +84,14 @@ async function homepage({
   return (
     <div>
         {/* <Navbar /> */}
+        <div className='mt-4'></div>
         <PartnersCarousel />
 
         <div className='px-2 pb-10'>
-          {<SliderPart cardProps={items} />}
+          {<SliderPart cardProps={items}
+           carouselClx="hidden md:flex" 
+           LABEL={<p className='text-sm'>SHOP BY CATEGORY</p>}
+            />}
         </div>
 
         <div className='h-[450px]  relative'>
@@ -105,11 +113,34 @@ async function homepage({
        <WhyChoose />
 
         <div className='px-2 pb-10'>
-          {<SliderOneLine label='BESTSELLERS' cardProps={items} />}
-        </div>
+        <NewSlider autoScroll  cardProps={items}
+          Label={
+              <div className='w-full text-sm mb-10'>
+              <p className='text-textColor font-semibold'>BESTSELLERS</p>
+            </div>} 
 
+          CustomContent={items.map((v,index) => {
+            return  <CarouselItem key={index} className="basis-4/5  ">
+                       <SliderImgCmp handle={v.handle} src={v.img} className='' />
+                      <div className={cn("",{
+                      })}>
+                              <p className='text-black text-2xl font-light   md:text-[10px]  flex truncate  mt-2 '>{v.label}
+                            </p>
+                            <p className='text-black text-md   md:text-[10px]  flex truncate  mt-8 '>50ml • Sensation • Micro-biome prebiotic<span className='hidden md:block'>-</span>  
+                            </p>
+                            <div className='bg-black h-[1px] mb-8'></div>
 
+                            <Button  className='bg-textColor uppercase text-[10px] py-0 font-bold'>Add to cart</Button>
+                      </div>
+                  </CarouselItem>
+            })}
+        carouselClx={undefined} />
+        </div> 
+
+        <div className='mt-4'></div>
         <BienFaitCarousel />
+        <div className='mt-4'></div>
+
 
         <div className='space-y-6'>
           <p className='text-textColor text-center text-sm uppercase font-semibold'>Verified {config.siteName} reviews</p>
@@ -119,37 +150,95 @@ async function homepage({
         </div>
 
         <div className='px-2 pb-10'>
-          {<SliderOneLine onlyImages autoScroll label='IN BED WITH' cardProps={items} />}
-          <p className='mt-4'>Pictures of {config.siteName} shared by our customers</p>
+          <NewSlider autoScroll  cardProps={items}
+          Label={
+              <div className='w-full text-sm'>
+              <p>IN BED WITH</p>
+              <div className='bg-black h-[1px] mb-2'></div>
+              <p className='mb-4'>Pictures of {config.siteName} shared by our customers</p>
+            </div>} 
+
+          CustomContent={items.map((v,index) => {
+            return  <CarouselItem key={index} className="basis-4/5  ">
+                      <SliderImgCmp handle={v.handle} src={v.img} className='h-[400px]' />
+
+                  </CarouselItem>
+            })}
+        carouselClx={undefined} />
+
+
         </div>
 
-        <ImagesViews imgs={products.map((v) => v.featuredImage.url!)} />
+
+
+        <div className='h-[400px]'>
+          <ImagesViews imgs={products.map((v) => v.featuredImage.url!)} />
+        </div>
 
        <WhyChoose />
 
-       <div className='px-2 pb-10'>
+       {/* <div className='px-2 pb-10'>
           {<SliderOneLine onlyImages autoScroll label='AS SEEN IN THE PRESS AND AVERTISING' cardProps={items} />}
+        </div> */}
+
+<div className='px-2 pb-10'>
+          <NewSlider autoScroll  cardProps={items}
+          Label={
+              <div className='w-full text-sm'>
+              <p>AS SEEN IN THE PRESS AND AVERTISING</p>
+              <div className='bg-black h-[1px] mb-5'></div>
+            </div>} 
+
+          CustomContent={items.map((v,index) => {
+            return  <CarouselItem key={index} className="basis-4/5  ">
+                      <SliderImgCmp handle={v.handle} src={v.img} className='h-[400px]' />
+
+                  </CarouselItem>
+            })}
+        carouselClx={undefined} />
+
+
         </div>
 
 
 
-        <div className='bg-primaryBg py-20 px-10'>
+
+        <div className='bg-primaryBg py-20 px-10 mb-14'>
           <div className='mx-auto text-secondBg text-center space-y-4'>
             <p className='text-4xl'>Graduate to {config.siteName}</p>
             <p className='text-md'>All the care for down there</p>
-            <Button size={"lg"} className='bg-white font-bold text-textColor text-lg'>SHOP NOW</Button>
+            <Button variant={"roam"}>SHOP NOW</Button>
           </div>
 
         </div>
 
-
+{/* 
         <div className='px-2 pb-10 bg-secondBg pt-2'>
           {<SliderOneLine onlyImages={true} autoScroll label='LATEST FROM ROAM' cardProps={items} />}
+        </div> */}
+
+
+
+<div className='px-2 pb-10 bg-[#F0E8DA] py-2'>
+          <NewSlider autoScroll  cardProps={items}
+          Label={
+              <div className='w-full text-sm'>
+              <p className='font-normal'>LATEST FROM ROAM</p>
+              <div className='bg-black h-[1px] mb-5'></div>
+            </div>} 
+
+          CustomContent={items.map((v,index) => {
+            return  <CarouselItem key={index} className="basis-3/5  ">
+                      <SliderImgCmp handle={v.handle} src={v.img} className='h-[280px]' />
+                      <p className='font-light text-xl my-2'>{v.label}</p>
+                      <Link className='text-textColor text-sm underline' href={"/"}>READ MORE</Link>
+
+                  </CarouselItem>
+            })}
+        carouselClx={"undefined"} />
+
+
         </div>
-
-
-
-        
 
 
       
@@ -183,7 +272,7 @@ const VideoBackground = ({children} : any) => {
           <p className='text-[36px]   '>next <span className='italic'>date night</span></p>
           <p className='text-sm max-w-sm text-center leading-5 uppercase '>Try sensational lubricants with flora protecting microbiome</p>
           <div className='w-fit mx-auto'>
-            <Button size={"lg"} className='text-textColor text-lg bg-white'>Shop the new range</Button>
+            <Button size={"lg"} variant={"roam"}>Shop the new range</Button>
           </div>
         </div>
         <div className='h-full sm:h-fit  w-full sm:max-w-[400px]  mx-auto md:mx-auto '>

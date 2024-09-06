@@ -48,7 +48,7 @@ const ImagesViews = ({imgs} : {imgs : string[]}) => {
   }, []);
 
   return (
-    <div className="relative w-full h-40 flex items-center justify-center mt-40 mb-52">
+    <div className="relative w-full h-full flex items-center justify-center  ">
       <AnimatePresence>
         {imgs.map((v, index) => (
           currentIndex === index && (
@@ -56,7 +56,7 @@ const ImagesViews = ({imgs} : {imgs : string[]}) => {
             style={{backgroundImage : `url('${v}')`,backgroundSize : "cover",backgroundPosition : "center",backgroundRepeat :"no-repeat"}}
 
               key={index}
-              className="absolute text-center text-2xl font-light text-gray-800 h-[500px] w-full bg-red-900"
+              className="absolute text-center text-2xl font-light text-gray-800 h-full w-full bg-red-900"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}

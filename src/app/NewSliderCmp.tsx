@@ -9,6 +9,7 @@ import Price from '@/components/price';
 import Link from 'next/link';
 import { CardProp } from '@/roam/homepage/homepage';
 import clsx from 'clsx';
+import Autoplay from "embla-carousel-autoplay"
 
 function MoveSliderCmp({api} : {api:any}){
   return (
@@ -51,8 +52,6 @@ function MoveSliderCmp({api} : {api:any}){
      href={`/product/${v.handle}`}
      prefetch={true}
    >
-
-
      <div className="group">
 <div
 className="h-[250px] rounded-lg transition duration-300 ease-in-out group-hover:brightness-[1.2]"
@@ -71,7 +70,34 @@ backgroundRepeat: "no-repeat",
   )
 }
 
-function SliderPart({cardProps , buildMoveSliderCmp,LABEL,carouselClx} : {cardProps : CardProp[] , buildMoveSliderCmp?:any,LABEL : any,carouselClx:any}) {
+
+
+
+ export function SliderImgCmp({className,src,handle} : {className:string,src : string,handle:string}) {
+  return (
+    <Link
+    className="relative h-full w-full "
+    href={`/product/${handle}`}
+    prefetch={true}
+  >
+    <div className="group">
+<div
+className={clsx(" rounded-lg transition duration-300 ease-in-out group-hover:brightness-[1.2]",className)}
+style={{
+backgroundImage: `url('${src}')`,
+backgroundSize: "cover",
+backgroundPosition: "center",
+backgroundRepeat: "no-repeat",
+}}
+>
+</div>
+    </div>
+
+</Link>
+  )
+}
+
+function NewSlider({cardProps,Label,autoScroll,CustomContent} : {cardProps : CardProp[] ,carouselClx:any,Label:any,autoScroll? : boolean ,CustomContent : any}) {
     const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
@@ -89,34 +115,21 @@ function SliderPart({cardProps , buildMoveSliderCmp,LABEL,carouselClx} : {cardPr
     })
   }, [api])
 
-  
+
+
   return (
    <div>
-    <div className=' mt-10'>
+      <div className=' mt-10'>
         <div className="flex justify-between items-center ">
-            {LABEL}
-            {buildMoveSliderCmp && buildMoveSliderCmp(api)}
+            {Label}
         </div>
-        <div className='bg-black h-[1px] mb-8' 
-        ></div>
+      
     </div>
 
-    <div className='grid grid-cols-2 gap-4  '>
-            {cardProps.slice(0,4).map((v,index) => {
-            return  <div key={index} className="">
-                       <SliderItem v={v}  />
-                  </div>
-            })}
-    </div>
-
-
-        <Carousel className={clsx("",carouselClx)} setApi={setApi} opts={{align : "center"}}>
+        <Carousel plugins={autoScroll ? [Autoplay({delay: 2000,})]: []} setApi={setApi} opts={{align : "center"}}>
         <CarouselContent>
-            {cardProps.map((v,index) => {
-            return  <CarouselItem key={index} className="basis-1/2 md:basis-1/2 lg:basis-1/4 ">
-                       <SliderItem v={v}  />
-                  </CarouselItem>
-            })}
+          {CustomContent}
+           
         </CarouselContent>
     </Carousel>
    </div>
@@ -128,4 +141,4 @@ function SliderPart({cardProps , buildMoveSliderCmp,LABEL,carouselClx} : {cardPr
 
 
 
-export default SliderPart
+export default NewSlider
