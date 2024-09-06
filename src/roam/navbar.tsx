@@ -6,6 +6,7 @@ import CartModal from '@/components/cart/modal'
 import { cn } from '@/lib/utils'
 import ScrollBasedComponents from './ScrollBasedComponents'
 import { div } from 'framer-motion/client'
+import { config } from './config'
 
 
 function MyCmp({isUp} : {isUp : boolean}) {
@@ -21,7 +22,7 @@ function MyCmp({isUp} : {isUp : boolean}) {
 
         })}>
             <MenuButton className={cn("",a)}/>
-            <p className={cn("text-5xl text-textColor text-center  ml-10",a)}>roam</p>
+            <p className={cn("text-5xl text-textColor text-center  ml-10",a)}>{config.siteName}</p>
             <div className="flex items-center">
                 <UserIcon className={cn("w-6 h-6",a)} />
                 <div className="flex justify-end md:w-1/3">

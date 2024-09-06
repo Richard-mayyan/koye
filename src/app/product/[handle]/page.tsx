@@ -128,7 +128,7 @@ export default async function ProductPage({ params }: { params: { handle: string
         
         {/* <RelatedProducts id={product.id} /> */}
         <div className='md:w-[80%] mx-auto my-24'>
-            <SliderPart products={relatedProducts} />
+            {/* <SliderPart products={to} /> */}
         </div>
 
       </div>

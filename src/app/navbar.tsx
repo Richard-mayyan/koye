@@ -27,7 +27,7 @@ function Navbar() {
       <div className="flex items-center space-x-8">
         <UserIcon className="w-6 h-6" />
         <div className="flex justify-end md:w-1/3">
-        <CartModal />
+        <CartModal className='' />
       </div>
       
       </div>

@@ -1,11 +1,12 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { FooterICONS } from './svgicons'
+import { config } from '@/roam/config'
 
 function Footer() {
   return (
 <>
-  <footer className="text-white pb-10 bg-appyellow">
+  <footer className="text-white pb-10 bg-primaryBg">
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="lg:flex lg:items-start lg:gap-8 ">
         {/* <div className="text-teal-600">
@@ -83,7 +84,7 @@ function Footer() {
             {href : "",label : "Politique de retour"},
         ]},
        ].map((v,index) => {
-        return  <div key={index} className="col-span-2 sm:col-span-1">
+        return  <div key={index} className="">
         <p className="font-medium ">{v.title}</p>
         <ul className="mt-6 space-y-4 text-sm">
             
@@ -91,7 +92,7 @@ function Footer() {
             return  <li  key={i}>
             <a
               href={v.href}
-              className="text-[10px] text-gray-200 transition hover:opacity-75"
+              className="text-sm text-secondBg transition hover:opacity-75"
             >
               {" "}
               {v.label}{" "}
@@ -126,7 +127,7 @@ function Footer() {
         
     </ul>
     <p className="text-xs  text-center mt-2">
-    Copyright ©  ROYE. All Rights Reserved.
+    Copyright ©  {config.siteName}. All Rights Reserved.
           </p>
 
   </footer>

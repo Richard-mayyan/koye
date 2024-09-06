@@ -9,7 +9,7 @@ import Price from '@/components/price';
 import Link from 'next/link';
 import { CardProp } from '@/roam/homepage/homepage';
 
-function Item({v} : {v:CardProp}) {
+ function SliderItem({v} : {v:CardProp}) {
   return (
     <div>
     <p className='text-textColor text-lg uppercase  md:text-[10px]  flex truncate  '>{v.label} <span className='hidden md:block'>-</span>  <Price
@@ -92,7 +92,7 @@ function SliderPart({cardProps} : {cardProps : CardProp[]}) {
     <div className='grid grid-cols-2 gap-4  '>
             {cardProps.slice(0,4).map((v,index) => {
             return  <div key={index} className="">
-                       <Item v={v}  />
+                       <SliderItem v={v}  />
                   </div>
             })}
 
@@ -101,7 +101,7 @@ function SliderPart({cardProps} : {cardProps : CardProp[]}) {
         <CarouselContent>
             {cardProps.map((v,index) => {
             return  <CarouselItem key={index} className="basis-1/2 md:basis-1/2 lg:basis-1/4 ">
-                       <Item v={v}  />
+                       <SliderItem v={v}  />
                   </CarouselItem>
             })}
         </CarouselContent>

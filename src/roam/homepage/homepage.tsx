@@ -6,6 +6,12 @@ import SliderPart, {  } from '@/app/SliderPart';
 import { Product } from '@/lib/shopify/types';
 import { defaultSort, sorting } from '@/lib/constants';
 import { getProducts } from '@/lib/shopify';
+import { config } from '../config';
+import { HeartIcon } from 'lucide-react';
+import SliderOneLine from '@/app/SliderOneLine';
+import BienFaitCarousel from './BienFaitCarousel';
+import TestimonialSlider from './testimonials';
+import ImagesViews from './ImagesViews';
 
 
 export interface CardProp {
@@ -30,6 +36,32 @@ export function getCardsItems(products :  Product[]) {
   return a
 }
 
+
+function WhyChoose() {
+  return (
+    <div className='bg-primaryBg py-14 px-4 space-y-6 text-secondBg'>
+    <p className=' text-3xl'>Why choose <span className='italic'>{config.siteName}</span>  </p>
+    <p className='text-sm'>Lorem ipsum, dolor sit amet ccorporis aut. Harum, ipsum. Deserunt ea odit repellendus, recusandae odio nihil.  </p>
+
+   {Array(3).fill(0).map((v,index)=> {
+    return  <div className='flex space-x-4' key={index}>
+        <div className='w-1/4 md:w-auto'>
+          <div className=' rounded-full border-secondBg border h-16 w-16  flex justify-center items-center'>
+            <HeartIcon className='text-secondBg w-1/2 h-1/2 ' />
+          </div>
+        </div>
+        <div className=' max-w-md'>
+          <p className='text-xl'>For <span className='italic'>pleasure</span></p>
+          <p className='text-xs'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, incidunt totam eum, minima atque modi </p>
+        </div>
+  </div>
+
+   })}
+
+
+  </div>
+  )
+}
 
 async function homepage({
   searchParams
@@ -70,7 +102,51 @@ async function homepage({
           </div>
         </div>
 
-        <div className='bg'></div>
+       <WhyChoose />
+
+        <div className='px-2 pb-10'>
+          {<SliderOneLine label='BESTSELLERS' cardProps={items} />}
+        </div>
+
+
+        <BienFaitCarousel />
+
+        <div className='space-y-6'>
+          <p className='text-textColor text-center text-sm uppercase font-semibold'>Verified {config.siteName} reviews</p>
+          <img className='w-36 mx-auto' src="https://a.storyblok.com/f/153121/648x905/42c81a17b0/home_review.png/m/400x0/" alt="" />
+          <TestimonialSlider />
+          
+        </div>
+
+        <div className='px-2 pb-10'>
+          {<SliderOneLine onlyImages autoScroll label='IN BED WITH' cardProps={items} />}
+          <p className='mt-4'>Pictures of {config.siteName} shared by our customers</p>
+        </div>
+
+        <ImagesViews imgs={products.map((v) => v.featuredImage.url!)} />
+
+       <WhyChoose />
+
+       <div className='px-2 pb-10'>
+          {<SliderOneLine onlyImages autoScroll label='AS SEEN IN THE PRESS AND AVERTISING' cardProps={items} />}
+        </div>
+
+
+
+        <div className='bg-primaryBg py-20 px-10'>
+          <div className='mx-auto text-secondBg text-center space-y-4'>
+            <p className='text-4xl'>Graduate to {config.siteName}</p>
+            <p className='text-md'>All the care for down there</p>
+            <Button size={"lg"} className='bg-white font-bold text-textColor text-lg'>SHOP NOW</Button>
+          </div>
+
+        </div>
+
+
+        <div className='px-2 pb-10 bg-secondBg pt-2'>
+          {<SliderOneLine onlyImages={true} autoScroll label='LATEST FROM ROAM' cardProps={items} />}
+        </div>
+
 
 
         
@@ -98,7 +174,7 @@ const VideoBackground = ({children} : any) => {
       </video>
 
 
-      {/* Image par-dessus */}
+    
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden ">
 
         <Navbar />
