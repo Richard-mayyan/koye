@@ -9,10 +9,11 @@ import { div } from 'framer-motion/client'
 import { config } from './config'
 import { MyNavigationList } from './MyNavigationList'
 import { CardProp } from './homepage/homepage'
+import { Collection } from '@/lib/shopify/types'
 // import MyNavigationList from './MyNavigationList'
 
 
-function MyCmp({isUp,items} : {isUp : boolean,items : CardProp[]}) {
+function MyCmp({isUp,items,collections} : {isUp : boolean,items : CardProp[],collections:Collection[]}) {
     const a = {
         'text-secondBg' : isUp,
         'text-textColor' : !isUp,
@@ -30,7 +31,7 @@ function MyCmp({isUp,items} : {isUp : boolean,items : CardProp[]}) {
             <p className={cn("text-5xl text-textColor text-center  ml-10 md:ml-0",a)}>{config.siteName}</p>
 
            <div className='hidden md:flex'>
-           <MyNavigationList items={items} />
+           <MyNavigationList collections={collections} items={items} />
            </div>
 
             <div className="flex items-center  md:space-x-4">
@@ -49,12 +50,12 @@ function MyCmp({isUp,items} : {isUp : boolean,items : CardProp[]}) {
 }
 
 // bg-secondBg
-function Navbar({items} : {items : CardProp[]}) {
+function Navbar({items,collections} : {items : CardProp[],collections :Collection[]}) {
    
   return (
     <div className='relative bg-green-700 p-4 bg-transparent md:bg-primaryBg w-full'>
 
-    <ScrollBasedComponents UP={<MyCmp items={items} isUp={false} />}  DOWN={<MyCmp items={items} isUp={true} />} />
+    <ScrollBasedComponents UP={<MyCmp collections={collections} items={items} isUp={false} />} DOWN={<MyCmp collections={collections} items={items} isUp={true} />}  />
 
     </div>
 

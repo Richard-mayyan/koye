@@ -32,9 +32,9 @@ export function Gallery({ images }: { images: { src: string; altText: string }[]
         {/* <div className='h-full w-full bg-yellow-900  '></div> */}
 
      
-        <div className=' w-full  absolute bottom-10'>
+        <div className=' w-full  absolute md:bottom-10 bottom-2'>
           {images.length > 1 ? (
-            <ul className=" flex items-center justify-center gap-2 overflow-auto py-1 lg:mb-0">
+            <ul className=" flex items-center justify-center gap-2 overflow-auto py-1 md:mb-0">
               {images.map((image, index) => {
                 const isActive = index === imageIndex;
 

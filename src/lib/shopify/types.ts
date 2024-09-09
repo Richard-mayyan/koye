@@ -108,6 +108,8 @@ export type ShopifyCart = {
 };
 
 export type ShopifyCollection = {
+  products?:Product[]
+  image?: Image;
   handle: string;
   title: string;
   description: string;

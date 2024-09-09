@@ -63,25 +63,21 @@ function Footer() {
           
        
        {[
-        {title : "About" , values : [
-            {href : "",label : "About"},
-            {href : "",label : "Shop"},
-            {href : "",label : "Our Story"},
-            {href : "",label : "Contact"},
-            {href : "",label : "Instagram"},
+        {title : "Shop" , values : [
+            {href : "",label : "Category 1"},
+            {href : "",label : "Category 2"},
+            {href : "",label : "Category 3"},
+        ]},
+        {title : "Help" , values :[
+            {href : "mailto:"+config.appEmail,label : "Contact"},
+            {href : "/faq",label : "FAQs"},
+            {href : "/privacy-policy",label : "Privacy Policy"},
+            {href : "/terms-of-service",label : "Terms of service"},
+        ]},
+        {title : "US" , values :[
+            {href : "/about",label : "About"},
+            {href : "/mission",label : "Mission"},
             {href : "",label : "Blog"},
-        ]},
-        {title : "Shop" , values :[
-            {href : "",label : "Nos collections"},
-            {href : "",label : "Guide de tailles"},
-            {href : "",label : "Nos conseils"},
-            {href : "",label : "Foire aux questions"},
-        ]},
-        {title : "MENTIONS LEGALES" , values :[
-            {href : "",label : "Conditions générales de vente"},
-            {href : "",label : "Politique de confidentialité"},
-            {href : "",label : "Politique de cookies"},
-            {href : "",label : "Politique de retour"},
         ]},
        ].map((v,index) => {
         return  <div key={index} className="">

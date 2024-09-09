@@ -1,11 +1,11 @@
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import Navbar from '@/roam/navbar'
 import React from 'react'
 import PartnersCarousel from './PartnersCarousel';
 import SliderPart, {  } from '@/app/SliderPart';
-import { Product } from '@/lib/shopify/types';
+import { Collection, Product } from '@/lib/shopify/types';
 import { defaultSort, sorting } from '@/lib/constants';
-import { getProducts } from '@/lib/shopify';
+import { getCollectionProducts, getCollections, getProducts } from '@/lib/shopify';
 import { config } from '../config';
 import { HeartIcon } from 'lucide-react';
 // import SliderOneLine from '@/app/SliderOneLine';
@@ -20,11 +20,29 @@ import Price from '@/components/price';
 
 
 export interface CardProp {
-  img : string
+  img? : string
   label : string
-  price : string
+  price? : string
   handle:string
-  currencyCode:string
+  currencyCode?:string
+  customLink?:string
+}
+
+
+
+
+export function getCardsItemsFromCollection(items :  Collection[]) {
+  const a : CardProp[] =  items.map((v) => ({
+    img : v.image?.url,
+    label : v.title,
+    price : "",
+    handle : v.handle,
+    currencyCode:"",
+    customLink : "/products/"+v.handle
+  }))
+
+
+  return a
 }
 
 
@@ -35,6 +53,8 @@ export function getCardsItems(products :  Product[]) {
     price : v.priceRange.maxVariantPrice.amount,
     handle : v.handle,
     currencyCode:v.priceRange.maxVariantPrice.currencyCode,
+    customLink : "/product/"+v.handle
+
   }))
 
 
@@ -77,16 +97,23 @@ async function homepage({
   const { sort, q: searchValue } = searchParams as { [key: string]: string };
   const { sortKey, reverse } = sorting.find((item) => item.slug === sort) || defaultSort;
 
-  const products = await getProducts({ sortKey, reverse, query: searchValue });
-  const resultsText = products.length > 1 ? 'results' : 'result';
+  // const products = await getProducts({ sortKey, reverse, query: searchValue });
+  const products = await getCollectionProducts({
+    collection: 'hidden-homepage-featured-items'
+  });
+  // console.log("ces produits ",products)
+
+  const collections = await getCollections();
+  console.log("ces collections ",collections.find((c) => c.products?.length)?.products)
+
+  // const resultsText = products.length > 1 ? 'results' : 'result';
 
   const items = getCardsItems(products)
-  console.log(items)
   return (
     <div>
         <div className='h-[100vh] md'>
           <VideoBackground> 
-          <Navbar items={items} />
+          <Navbar collections={collections} items={items} />
           </VideoBackground>
         </div>
 
@@ -96,7 +123,7 @@ async function homepage({
         <PartnersCarousel />
 
         <div className='px-4 pb-10'>
-          {<SliderPart cardProps={items}
+          {<SliderPart cardProps={getCardsItemsFromCollection(collections)}
            carouselClx="hidden" 
            LABEL={<p className='text-sm'>SHOP BY CATEGORY</p>}
             />}
@@ -106,6 +133,7 @@ async function homepage({
           <div className=' bg-red-800 lg:w-1/2 lg:h-full h-[450px]  relative'>
               <div className=''>
                   <video
+                  preload="auto"
                   className="absolute top-0 left-0 w-full h-full object-cover"
                   autoPlay
                   loop
@@ -126,7 +154,7 @@ async function homepage({
        </div>
 
         <div className='px-2 pb-10'>
-        <NewSlider autoScroll  cardProps={items}
+        <NewSlider   cardProps={items}
           Label={
               <div className='w-full text-sm mb-10'>
               <p className='text-textColor font-semibold'>BESTSELLERS</p>
@@ -134,7 +162,12 @@ async function homepage({
 
           CustomContent={items.map((v,index) => {
             return  <CarouselItem key={index} className="basis-4/5 lg:basis-1/4  ">
-                       <SliderImgCmp handle={v.handle} src={v.img} className='h-[250px] lg:h-[320px]' />
+               <Link
+          className="relative h-full w-full "
+          href={v.customLink ?? `/product/${v.handle}`}
+          prefetch={true}
+        >
+                       {v.img && <SliderImgCmp handle={v.handle} src={v.img} className='h-[250px] lg:h-[320px]' />}
                       <div className={cn("",{
                       })}>
                               <p className='text-black text-2xl font-light     flex truncate  mt-2 '>{v.label}
@@ -146,15 +179,16 @@ async function homepage({
                             <div className="flex items-center justify-between space-x-2">
                               <Button  className='bg-textColor uppercase lg:text-md text-[10px] py-0 font-bold lg:text-[12px] lg:px-6 lg:py-5'>Add to cart</Button>
 
-                              <Price
+                              {v.price && v.currencyCode && <Price
                                     className="flex justify-end space-y-2 text-right text-sm font-bold text-textColor"
                                     amount={v.price}
                                     currencyCode={v.currencyCode}
-                                  />
+                                  />}
 
                             </div>
 
                       </div>
+                      </Link>
                   </CarouselItem>
             })}
         carouselClx={undefined} />
@@ -165,9 +199,6 @@ async function homepage({
         <div className='mt-4'></div>
           <BienFaitCarousel />
         <div className='mt-10'></div>
-
-
-
 
         <div className='space-y-6 lg:flex'>
               <p className='text-textColor text-center text-sm lg:hidden uppercase font-semibold'>Verified {config.siteName} reviews</p>
@@ -189,23 +220,22 @@ async function homepage({
 
           CustomContent={items.map((v,index) => {
             return  <CarouselItem key={index} className="basis-4/5 lg:basis-2/5 ">
-                      <SliderImgCmp handle={v.handle} src={v.img} className='h-[400px]' />
-
+                   <Link
+                      className="relative h-full w-full "
+                      href={v.customLink ?? `/product/${v.handle}`}
+                      prefetch={true}
+                    >
+                                  {v.img && <SliderImgCmp handle={v.handle} src={v.img} className='h-[400px]' />}
+                    </Link>
                   </CarouselItem>
             })}
         carouselClx={undefined} />
-
-
         </div>
 
 
-
-        {/* <div className='h-[400px] lg:h-[80vh]'>
-        </div> */}
-
         <div className='lg:flex lg:h-[500px]'>
           <div className=' bg-red-800 lg:w-1/2 lg:h-full h-[450px]  relative'>
-            <ImagesViews imgs={products.map((v) => v.featuredImage.url!)} />
+            <ImagesViews imgs={products.map((v) => v.featuredImage?.url)} />
             </div>
 
             <div className='lg:w-1/2 h-full bg-green-500 overflow-hidden'>
@@ -228,7 +258,14 @@ async function homepage({
 
           CustomContent={items.map((v,index) => {
             return  <CarouselItem key={index} className="basis-4/5 lg:basis-2/5 ">
-                      <SliderImgCmp handle={v.handle} src={v.img} className='h-[400px]' />
+                 <Link
+                      className="relative h-full w-full "
+                      href={v.customLink ?? `/product/${v.handle}`}
+                      prefetch={true}
+                    >
+              
+                      {v.img && <SliderImgCmp handle={v.handle} src={v.img} className='h-[400px]' />}
+                  </Link>
 
                   </CarouselItem>
             })}
@@ -244,7 +281,7 @@ async function homepage({
           <div className='mx-auto text-secondBg text-center space-y-4'>
             <p className='text-4xl'>Graduate to {config.siteName}</p>
             <p className='text-md'>All the care for down there</p>
-            <Button variant={"roam"}>SHOP NOW</Button>
+            <Link href={"/search"} className={buttonVariants({variant : "roam"})}>SHOP NOW</Link>
           </div>
 
         </div>
@@ -266,12 +303,18 @@ async function homepage({
 
           CustomContent={items.slice(0,3).map((v,index) => {
             return  <CarouselItem key={index} className="basis-3/5 lg:basis-1/3 ">
-                      <SliderImgCmp handle={v.handle} src={v.img} className={cn("h-[280px] lg:h-[400px]",{
-                        "mt-10" : index %2!=0,
-                        // "border h-[80px]" : index %2==0,
-                      })} />
+              
+              <Link
+                      className="relative h-full w-full "
+                      href={v.customLink ?? `/product/${v.handle}`}
+                      prefetch={true}
+                    >
+                      {v.img && <SliderImgCmp handle={v.handle} src={v.img} className={cn("h-[280px] lg:h-[400px]",{
+                        "lg:mt-10" : index %2!=0,
+                      })} />}
                       <p className='font-light text-2xl lg:text-3xl my-2'>{v.label}</p>
                       <p className='font-light text-md my-2'>Lorem, ipsum dolor sit amet explicabo minima, reprehenderit aliquam similique t?</p>
+              </Link>
                       <Link className='text-textColor text-sm underline' href={"/"}>READ MORE</Link>
 
                   </CarouselItem>

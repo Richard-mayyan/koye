@@ -44,10 +44,11 @@ import { SliderImgCmp } from './NewSliderCmp';
 
  <Link
      className="relative h-full w-full "
-     href={`/product/${v.handle}`}
+     href={v.customLink ?? `/product/${v.handle}`}
      prefetch={true}
    >
-    <SliderImgCmp className='h-[250px] lg:h-[350px]' src={v.img} handle={v.handle} />
+    {/* {v.customLink } */}
+    {v.img && <SliderImgCmp className='h-[250px] lg:h-[350px]' src={v.img} handle={v.handle} />}
 
 
 
@@ -96,7 +97,7 @@ function SliderPart({cardProps , buildMoveSliderCmp,LABEL,carouselClx} : {cardPr
     </div>
 
 
-        <Carousel className={clsx("",carouselClx)} setApi={setApi} opts={{align : "center"}}>
+        {/* <Carousel className={clsx("",carouselClx)} setApi={setApi} opts={{align : "center"}}>
         <CarouselContent>
             {cardProps.map((v,index) => {
             return  <CarouselItem key={index} className="basis-1/2 md:basis-1/2 lg:basis-1/4 ">
@@ -104,7 +105,7 @@ function SliderPart({cardProps , buildMoveSliderCmp,LABEL,carouselClx} : {cardPr
                   </CarouselItem>
             })}
         </CarouselContent>
-    </Carousel>
+    </Carousel> */}
    </div>
   )
 }

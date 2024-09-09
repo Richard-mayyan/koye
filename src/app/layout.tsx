@@ -37,9 +37,6 @@ export default function RootLayout({
               <p className="underline md:text-sm">FREE DELIVERY OVER {config.deliveryBase}</p>
             </Link>
           </div>
-
-       
-        
           
           {children}
           <Footer />

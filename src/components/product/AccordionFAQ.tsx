@@ -6,30 +6,24 @@ import {
   } from "@/components/ui/accordion"
 import { MinusIcon } from "lucide-react"
   
-  export function AccordionProduct() {
+  export function AccordionFAQ() {
     return (
       <Accordion type="single" collapsible className="w-full text-xs md:text-xl">
         <AccordionItem className="" value="item-1">
           <AccordionTrigger>
-            <span>Is it accessible?</span>
+            <span>Where do you ship to?</span>
           </AccordionTrigger>
           <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
+          We currently deliver to Mainland UK and Northern Ireland. We use neutral packaging so you can be reassured that your delivery is discreet.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2">
-          <AccordionTrigger>Is it styled?</AccordionTrigger>
+          <AccordionTrigger>When will my order arrive?</AccordionTrigger>
           <AccordionContent>
-            Yes. It comes with default styles that matches the other
-            components&apos; aesthetic.
+          We dispatch your order at 3pm every day (Monday - Friday). You should receive the items within 48 hours if placed before 3pm, and 72 hours if placed after 3pm!
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="item-3">
-          <AccordionTrigger>Is it animated?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It's animated by default, but you can disable it if you prefer.
-          </AccordionContent>
-        </AccordionItem>
+
       </Accordion>
     )
   }

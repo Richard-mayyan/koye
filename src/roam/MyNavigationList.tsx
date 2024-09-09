@@ -1,4 +1,3 @@
-"use client"
 
 import * as React from "react"
 import Link from "next/link"
@@ -13,10 +12,12 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { CardProp } from "./homepage/homepage"
+import { CardProp, getCardsItems } from "./homepage/homepage"
 import NewSlider, { SliderImgCmp } from "@/app/NewSliderCmp"
 import { CarouselItem } from "@/components/ui/carousel"
 import { Button } from "@/components/ui/button"
+import Price from "@/components/price"
+import { Collection } from "@/lib/shopify/types"
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -56,40 +57,54 @@ const components: { title: string; href: string; description: string }[] = [
   },
 ]
 
-export function MyNavigationList({items} : {items : CardProp[]}) {
+export function MyNavigationList({items,collections} : {items : CardProp[],collections: Collection[]}) {
   return (
     <NavigationMenu className="">
       <NavigationMenuList>
   
-       {Array(6).fill(0).map((v,index) => {
-      return    <NavigationMenuItem className="mx-">
-      <NavigationMenuTrigger className="text-secondBg bg-transparent">DEVICES</NavigationMenuTrigger>
-      <NavigationMenuContent className="max-w-[1000px] px-4 pb-4">
+       {collections.map((v,index) => {
+      return    <NavigationMenuItem key={index} className="mx-">
+      <NavigationMenuTrigger className="text-secondBg bg-transparent">
+        <Link href={"/search/"+v.title}>{v.title}</Link>
+      </NavigationMenuTrigger>
+      <NavigationMenuContent className="max-w-[500px] px-4 pb-4">
         {/* <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]"> */}
 
-<NewSlider  cardProps={items}
+       {v.products && <NewSlider   cardProps={v.products.map((v) => ({
+    img : v.featuredImage?.url,
+    label : v.title,
+    price : "",
+    handle : v.handle,
+    currencyCode:"",
+    customLink : "/product/"+v.handle
+
+  }))}
           Label={
               <div className='w-full text-sm mb-10'>
-              <p className='text-textColor font-semibold'>BESTSELLERS</p>
+              <p className='text-textColor font-semibold'>Shop By</p>
             </div>} 
 
-          CustomContent={items.map((v,index) => {
-            return  <CarouselItem key={index} className=" basis-1/4  overflow-hidden  ">
-                       <SliderImgCmp handle={v.handle} src={v.img} className='h-[200px]' />
+          CustomContent={v.products.map((v,index) => {
+            return  <CarouselItem key={index} className="basis-4/5 lg:basis-1/4  ">
+               <Link
+          className="relative h-full w-full "
+          href={`/product/${v.handle}`}
+          prefetch={true}
+        >
+                       {v.featuredImage && <SliderImgCmp handle={v.handle} src={v.featuredImage.url} className='h-[150px] lg:h-[120px] border' />}
                       <div className={cn("",{
                       })}>
-                              <p className='text-black text-2xl font-light   md:text-[10px]  flex truncate  mt-2 '>{v.label}
+                              <p className='text-black text-xl font-light     flex truncate  mt-2 '>{v.title}
                             </p>
-                            <p className='text-black text-md   md:text-[10px]  flex truncate  mt-8 '>50ml • Sensation • Micro-biome prebiotic<span className='hidden md:block'>-</span>  
-                            </p>
-                            <div className='bg-black h-[1px] mb-8'></div>
+                           
 
-                            <Button  className='bg-textColor uppercase text-[10px] py-0 font-bold'>Add to cart</Button>
                       </div>
+                      </Link>
                   </CarouselItem>
             })}
-        carouselClx={undefined} />
+        carouselClx={undefined} />}
 
+        
      
         {/* </ul> */}
       </NavigationMenuContent>

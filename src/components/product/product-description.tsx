@@ -7,14 +7,27 @@ import { AddToCart } from '../cart/add-to-cart';
 import Price from '../price';
 import { VariantSelector } from './variant-selector';
 import Prose from '../prose';
-import { CheckCircleIcon, CheckIcon } from 'lucide-react';
+import { CheckCircleIcon, CheckIcon, Star } from 'lucide-react';
 import { AccordionProduct } from './AccordionProduct';
+import Link from 'next/link';
 
 export function ProductDescription({ product }: { product: Product }) {
   return (
-    <>
-      <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700 pt-10">
-        <h1 className="mb-2 text-xl font-medium">{product.title}</h1>
+    <div className='md:px-6'>
+      <div className="mb-6 flex flex-col border-b pb-6 dark:border-neutral-700 pt-10  ">
+        {/* <p>
+          <Link href={"/"}>Search</Link> {"  / "}
+          <Link href={"/"}>{product.title}</Link> {"  / "}
+          <Link href={"/"}>{product.description}</Link>
+        </p> */}
+        <h1 className="mb-2 tracking-normal md:text-5xl text-xl font-light md:mt-14">{product.title}</h1>
+        <div className='flex items-center space-x-4'>
+              <div className='flex space-x-1'>
+                        {Array(5).fill(0).map((v,index) => <Star key={index} fill='#9b3920'  className='w-4 h-4 text-textColor' />)}
+              </div>
+              <p className='underline text-sm text-black'>4.8/5</p>
+              <p className='underline text-sm text-black'>{product.description}</p>
+        </div>
        
       </div>
       <VariantSelector options={product.options} variants={product.variants} />
@@ -51,7 +64,7 @@ export function ProductDescription({ product }: { product: Product }) {
       <div className='space-y-4'>
         <div className="flex space-x-2">
           <CheckCircleIcon className='w-4 h-4' />
-          <p className='text-xs'>Shipping within 48 hours in mainland France and in European Union countries for products in stock.</p>
+          <p className='text-xs md:text-[14px]'>Shipping within 48 hours in mainland France and in European Union countries for products in stock.</p>
         </div>
 
         <div className="flex space-x-2">
@@ -69,7 +82,7 @@ export function ProductDescription({ product }: { product: Product }) {
 
 
 
-          <p className='text-xs'>Pre-order items will ship 6 weeks after ordering.</p>
+          <p className='text-xs md:text-[14px]'>Pre-order items will ship 6 weeks after ordering.</p>
         </div>
 
         <div className="flex space-x-2">
@@ -84,13 +97,13 @@ export function ProductDescription({ product }: { product: Product }) {
           </defs>
         </svg>
 
-          <p className='text-xs'>Delivery time is estimated at 5 - 7 days depending on the day of the order and the carrier's deadlines.</p>
+          <p className='text-xs md:text-[14px]'>Delivery time is estimated at 5 - 7 days depending on the day of the order and the carrier's deadlines.</p>
         </div>
       </div>
 
       <div className='mt-10'></div>
 
 
-    </>
+    </div>
   );
 }

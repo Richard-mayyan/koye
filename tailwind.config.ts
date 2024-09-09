@@ -33,6 +33,9 @@ const config = {
 			},
 			primaryBg: {
 				DEFAULT: '#9B3920',
+				augmented: '#4F1F17',
+				
+				
 			},
 			secondBg: {
 				DEFAULT: '#FFF9EE',

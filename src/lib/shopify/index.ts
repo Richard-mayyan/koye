@@ -59,7 +59,8 @@ const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
 type ExtractVariables<T> = T extends { variables: object } ? T['variables'] : never;
 
 export async function shopifyFetch<T>({
-  cache = 'force-cache',
+  // cache = 'force-cache',
+  cache = 'no-cache',
   headers,
   query,
   tags,
@@ -135,6 +136,9 @@ const reshapeCart = (cart: ShopifyCart): Cart => {
 const reshapeCollection = (collection: ShopifyCollection): Collection | undefined => {
   if (!collection) {
     return undefined;
+  }
+  if(collection.products) {
+    collection.products = removeEdgesAndNodes(collection.products as any)
   }
 
   return {
@@ -319,22 +323,23 @@ export async function getCollections(): Promise<Collection[]> {
   });
   const shopifyCollections = removeEdgesAndNodes(res.body?.data?.collections);
   const collections = [
-    {
-      handle: '',
-      title: 'All',
-      description: 'All products',
-      seo: {
-        title: 'All',
-        description: 'All products'
-      },
-      path: '/search',
-      updatedAt: new Date().toISOString()
-    },
+    // {
+    //   handle: '',
+    //   title: 'All',
+    //   description: 'All products',
+    //   seo: {
+    //     title: 'All',
+    //     description: 'All products'
+    //   },
+    //   path: '/search',
+    //   updatedAt: new Date().toISOString()
+    // },
     // Filter out the `hidden` collections.
     // Collections that start with `hidden-*` need to be hidden on the search page.
     ...reshapeCollections(shopifyCollections).filter(
       (collection) => !collection.handle.startsWith('hidden')
     )
+    // ...reshapeCollections(shopifyCollections)
   ];
 
   return collections;

@@ -98,17 +98,17 @@ export default async function ProductPage({ params }: { params: { handle: string
           __html: JSON.stringify(productJsonLd)
         }}
       />
-      <div className="pb-2  bg-appyellow">
+      <div className="pb-2  ">
       </div>
-      <div className="mx-auto max-w-screen-2xl ">
-        <div className="flex flex-col rounded-lg border border-neutral-200 bg-white  lg:flex-row lg:gap-8 dark:border-neutral-800 dark:bg-black">
-          <div className=" w-1/2 bg-green-700 ">
+      <div className="mx-auto max-w-screen-2xl border-yellow-600   ">
+        <div className="flex flex-col rounded-lg h-[92vh]   md:flex-row lg:gap-8 dark:border-neutral-800 dark:bg-black">
+          <div className=" md:w-1/2  ">
             <Suspense
               fallback={
                 <div className="relative aspect-square h-full  w-full overflow-hidden" />
               }
             >
-              <div className='bg-yellow-600 h-full'>
+              <div className='bg-yellow-600 h-full  border-red-900 '>
                 <Gallery
                   images={product.images.slice(0, 5).map((image: Image) => ({
                     src: image.url,
@@ -119,7 +119,7 @@ export default async function ProductPage({ params }: { params: { handle: string
             </Suspense>
           </div>
 
-          <div className="w-1/2 ">
+          <div className="md:w-1/2   overflow-y-scroll">
             <Suspense fallback={null}>
               <ProductDescription product={product} />
             </Suspense>
@@ -127,9 +127,9 @@ export default async function ProductPage({ params }: { params: { handle: string
         </div>
         
         {/* <RelatedProducts id={product.id} /> */}
-        <div className='md:w-[80%] mx-auto my-24'>
+        {/* <div className='md:w-[80%] mx-auto my-24'> */}
             {/* <SliderPart products={to} /> */}
-        </div>
+        {/* </div> */}
 
       </div>
     </ProductProvider>

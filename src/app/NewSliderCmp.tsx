@@ -36,64 +36,58 @@ function MoveSliderCmp({api} : {api:any}){
 // }
 
 
- function SliderItem({v} : {v:CardProp}) {
-  return (
-    <div>
-    <p className='text-textColor text-lg uppercase  md:text-[10px]  flex truncate  '>{v.label} <span className='hidden md:block'>-</span>  <Price
-         className="flex-none rounded-full  text-black hidden md:block"
-         amount={v.price}
-         currencyCode={v.currencyCode}
-         currencyCodeClassName="hidden @[275px]/label:inline"
-       />
-   </p>
+//  function SliderItem({v} : {v:CardProp}) {
+//   return (
+//     <div>
+//     <p className='text-textColor text-lg uppercase  md:text-[10px]  flex truncate  '>{v.label} <span className='hidden md:block'>-</span>  <Price
+//          className="flex-none rounded-full  text-black hidden md:block"
+//          amount={v.price}
+//          currencyCode={v.currencyCode}
+//          currencyCodeClassName="hidden @[275px]/label:inline"
+//        />
+//    </p>
 
- <Link
-     className="relative h-full w-full "
-     href={`/product/${v.handle}`}
-     prefetch={true}
-   >
-     <div className="group">
-<div
-className="h-[250px] rounded-lg transition duration-300 ease-in-out group-hover:brightness-[1.2]"
-style={{
-backgroundImage: `url('${v.img}')`,
-backgroundSize: "cover",
-backgroundPosition: "center",
-backgroundRepeat: "no-repeat",
-}}
->
-</div>
-     </div>
+//  <Link
+//      className="relative h-full w-full "
+//      href={`/product/${v.handle}`}
+//      prefetch={true}
+//    >
+//      <div className="group">
+// <div
+// className="h-[250px] rounded-lg transition duration-300 ease-in-out group-hover:brightness-[1.2]"
+// style={{
+// backgroundImage: `url('${v.img}')`,
+// backgroundSize: "cover",
+// backgroundPosition: "center",
+// backgroundRepeat: "no-repeat",
+// }}
+// >
+// </div>
+//      </div>
 
- </Link>
-    </div>
-  )
-}
+//  </Link>
+//     </div>
+//   )
+// }
 
 
 
 
  export function SliderImgCmp({className,src,handle} : {className:string,src : string,handle:string}) {
   return (
-    <Link
-    className="relative h-full w-full "
-    href={`/product/${handle}`}
-    prefetch={true}
-  >
-    <div className="group">
-<div
-className={clsx(" rounded-lg transition duration-300 ease-in-out group-hover:brightness-[1.2]",className)}
-style={{
-backgroundImage: `url('${src}')`,
-backgroundSize: "cover",
-backgroundPosition: "center",
-backgroundRepeat: "no-repeat",
-}}
->
-</div>
-    </div>
 
-</Link>
+    <div className="group">
+        <div
+        className={clsx(" rounded-lg transition duration-300 ease-in-out group-hover:brightness-[1.2]",className)}
+        style={{
+        backgroundImage: `url('${src}')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        }}
+        >
+        </div>
+    </div>
   )
 }
 
@@ -122,7 +116,7 @@ function NewSlider({cardProps,Label,autoScroll,CustomContent} : {cardProps : Car
       <div className=' mt-10'>
         <div className="flex justify-between items-center ">
             {Label}
-           <MoveSliderCmp api={api} />
+           {/* <MoveSliderCmp api={api} /> */}
         </div>
       
     </div>
@@ -130,7 +124,6 @@ function NewSlider({cardProps,Label,autoScroll,CustomContent} : {cardProps : Car
         <Carousel plugins={autoScroll ? [Autoplay({delay: 2000,})]: []} setApi={setApi} opts={{align : "center"}}>
         <CarouselContent>
           {CustomContent}
-           
         </CarouselContent>
     </Carousel>
    </div>

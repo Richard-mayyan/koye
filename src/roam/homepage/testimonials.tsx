@@ -39,7 +39,7 @@ const TestimonialSlider: React.FC = () => {
                 <p className='mb-10 text-[2rem] lg:text-[3rem] px-4 text-center lg:text-left '>"{testimonial.text}"</p>
                 <div className='flex w-fit mx-auto lg:mx-0'>
                     <div className='flex space-x-1'>
-                        {Array(5).fill(0).map((v,index) => <Star fill='#9b3920'  className='w-4 h-4 text-textColor' />)}
+                        {Array(5).fill(0).map((v,index) => <Star key={index} fill='#9b3920'  className='w-4 h-4 text-textColor' />)}
                     </div>
                     <p className='text-textColor text-xs ml-4 '>CA on  <a href="">TRUSTPILOT</a> </p>
 

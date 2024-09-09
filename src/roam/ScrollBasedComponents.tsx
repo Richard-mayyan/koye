@@ -1,5 +1,7 @@
+"use client"
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Collection } from '@/lib/shopify/types';
 
 const ScrollBasedComponents = ({UP,DOWN} : {UP:any , DOWN : any}) => {
   const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>("up");
