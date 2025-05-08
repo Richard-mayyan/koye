@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/cart/cart-context";
-import { cookies } from 'next/headers';
+import { cookies } from "next/headers";
 import { getCart } from "@/lib/shopify";
 import Navbar from "@/roam/navbar";
 import Footer from "./footer";
 import { VideoBackground } from "@/roam/homepage/homepage";
 import { config } from "@/roam/config";
 import Link from "next/link";
-
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,24 +22,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cartId = cookies().get('cartId')?.value;
+  const cartId = cookies().get("cartId")?.value;
   // Don't await the fetch, pass the Promise to the context provider
   const cart = getCart(cartId);
-
 
   return (
     <html lang="en">
       <body className={inter.className}>
         <CartProvider cartPromise={cart}>
-          <div className="bg-primaryBg text-secondBg text-xs text-center py-3 ">
+          <div className="bg-appyellow text-secondBg text-xs text-center py-3 ">
             <Link href={"/"}>
-              <p className="underline md:text-sm">FREE DELIVERY OVER {config.deliveryBase}</p>
+              <p className="underline md:text-sm">
+                FREE DELIVERY OVER {config.deliveryBase}
+              </p>
             </Link>
           </div>
-          
+
           {children}
           <Footer />
-
         </CartProvider>
       </body>
     </html>

@@ -5,6 +5,8 @@ import { getCardsItems } from '@/roam/homepage/homepage';
 import Navbar from '@/roam/navbar';
 import React from 'react';
 
+
+
 async function page({
   searchParams
 }: {
@@ -20,7 +22,7 @@ async function page({
   });
   // console.log("ces produits ",products)
 
-  
+
   const collections = await getCollections();
   console.log("ces collections ",collections.find((c) => c.products?.length)?.products)
 

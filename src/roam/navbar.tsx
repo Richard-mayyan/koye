@@ -1,65 +1,133 @@
-"use client"
-import React from 'react'
-import MenuButton from './homepage/MenuButton'
-import { UserIcon } from 'lucide-react'
-import CartModal from '@/components/cart/modal'
-import { cn } from '@/lib/utils'
-import ScrollBasedComponents from './ScrollBasedComponents'
-import { div } from 'framer-motion/client'
-import { config } from './config'
-import { MyNavigationList } from './MyNavigationList'
-import { CardProp } from './homepage/homepage'
-import { Collection } from '@/lib/shopify/types'
+"use client";
+import React from "react";
+import MenuButton from "./homepage/MenuButton";
+import { UserIcon } from "lucide-react";
+import CartModal from "@/components/cart/modal";
+import { cn } from "@/lib/utils";
+import ScrollBasedComponents from "./ScrollBasedComponents";
+import { div } from "framer-motion/client";
+import { config } from "./config";
+import { MyNavigationList } from "./MyNavigationList";
+import { CardProp } from "./homepage/homepage";
+import { Collection } from "@/lib/shopify/types";
 // import MyNavigationList from './MyNavigationList'
 
+import Link from "next/link";
 
-function MyCmp({isUp,items,collections} : {isUp : boolean,items : CardProp[],collections:Collection[]}) {
-    const a = {
-        'text-secondBg' : isUp,
-        'text-textColor' : !isUp,
-    }
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+
+export function NavigationMenuDemo() {
   return (
-    <div className='w-full '>
-        <div className={cn("flex justify-between items-center  py-1 text-secondBg px-2",{
-            "bg-secondBg" : !isUp,
-            'text-textColor' : isUp,
+    <NavigationMenu className="text-white">
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <Link href="/docs" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              ACHETER
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
 
-        })}>
-          <div className='md:hidden'>
-            <MenuButton className={cn("",a)}/>
-          </div>
-            <p className={cn("text-5xl text-textColor text-center  ml-10 md:ml-0",a)}>{config.siteName}</p>
+        <NavigationMenuItem>
+          <Link href="/docs" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              FAQs
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
 
-           <div className='hidden md:flex'>
-           <MyNavigationList collections={collections} items={items} />
-           </div>
+        <NavigationMenuItem>
+          <Link href="/docs" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              CONTACT US
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}
 
-            <div className="flex items-center  md:space-x-4">
-                <UserIcon className={cn("w-8 h-8",a)} />
-                <div className="flex justify-end md:w-1/3">
-                <CartModal className={cn("text-textColor",{
-                        'text-secondBg' : isUp,
-                })} />
-                </div>
-            </div>
-
-
+function MyCmp({
+  isUp,
+  items,
+  collections,
+}: {
+  isUp: boolean;
+  items: CardProp[];
+  collections: Collection[];
+}) {
+  const a = {
+    "text-secondBg": isUp,
+    "text-textColor": !isUp,
+  };
+  return (
+    <div className="w-full ">
+      <div
+        className={cn(
+          "flex justify-between items-center  py-1 text-secondBg px-2",
+          {
+            "bg-secondBg": !isUp,
+            "text-textColor": isUp,
+          }
+        )}
+      >
+        <div className="md:hidden">
+          <MenuButton className={cn("", a)} />
         </div>
+        <p
+          className={cn(
+            "text-5xl text-textColor text-center  ml-10 md:ml-0",
+            a
+          )}
+        >
+          {config.siteName}
+        </p>
+
+        <div className="hidden md:flex ">
+          <NavigationMenuDemo />
+          {/* <MyNavigationList collections={collections} items={items} /> */}
+        </div>
+
+        <div className="flex items-center  md:space-x-4">
+          <UserIcon className={cn("w-8 h-8", a)} />
+          <div className="flex justify-end md:w-1/3">
+            <CartModal
+              className={cn("text-textColor", {
+                "text-secondBg": isUp,
+              })}
+            />
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
 // bg-secondBg
-function Navbar({items,collections} : {items : CardProp[],collections :Collection[]}) {
-   
+function Navbar({
+  items,
+  collections,
+}: {
+  items: CardProp[];
+  collections: Collection[];
+}) {
   return (
-    <div className='relative bg-green-700 p-4 bg-transparent md:bg-primaryBg w-full'>
-
-    <ScrollBasedComponents UP={<MyCmp collections={collections} items={items} isUp={false} />} DOWN={<MyCmp collections={collections} items={items} isUp={true} />}  />
-
+    <div className="relative  p-4 bg-transparent md:bg-primaryBg w-full">
+      <ScrollBasedComponents
+        UP={<MyCmp collections={collections} items={items} isUp={false} />}
+        DOWN={<MyCmp collections={collections} items={items} isUp={true} />}
+      />
     </div>
-
-  )
+  );
 }
 
 //  function MyNavigationList() {
@@ -74,4 +142,4 @@ function Navbar({items,collections} : {items : CardProp[],collections :Collectio
 //   )
 // }
 
-export default Navbar
+export default Navbar;

@@ -69,3 +69,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+.hideScrollbar {
+  overflow-y: scroll; /* Force une scrollbar réservée pour éviter les sauts de mise en page */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hideScrollbar::-webkit-scrollbar {
+  display: none;
+}
