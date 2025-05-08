@@ -59,7 +59,10 @@ function Footer() {
                   values: [
                     { href: "mailto:" + config.appEmail, label: "Contact" },
                     { href: "/faq", label: "FAQs" },
-                    { href: "/privacy-policy", label: "Privacy Policy" },
+                    {
+                      href: "/privacy-policy",
+                      label: "Politique de confidentialité",
+                    },
                     {
                       href: "/terms-of-service",
                       label: "Termes et conditions",

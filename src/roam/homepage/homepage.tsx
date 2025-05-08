@@ -23,6 +23,7 @@ import { cn } from "@/lib/utils";
 import Price from "@/components/price";
 import ArticleCarousel from "./ArticleCarousel";
 import clsx from "clsx";
+import Perfection from "./Perfection";
 
 export interface CardProp {
   img?: string;
@@ -175,7 +176,7 @@ async function homepage({
         </div>
       </div>
 
-      {/* <div className="px-2 pb-10">
+      <div className="px-2 pb-10">
         <NewSlider
           cardProps={items}
           Label={
@@ -228,7 +229,7 @@ async function homepage({
           })}
           carouselClx={undefined}
         />
-      </div> */}
+      </div>
 
       <div className="mt-10"></div>
 
@@ -352,35 +353,7 @@ async function homepage({
         /> */}
       </div>
 
-      <div className="">
-        <div className="bg-white py-20 px-10 mb-14">
-          <div className="mx-auto text-black text-center space-y-4">
-            <p className="text-4xl">Passez à la perfection,</p>
-            <p className="text-4xl">Passez à {config.siteName}</p>
-
-            <p className="text-md">All the care for down there</p>
-            <Link
-              href={"/search"}
-              className={`${buttonVariants({
-                variant: "roam",
-                size: "lg",
-              })} uppercase bg-primaryBg `}
-            >
-              DÉCOUVREZ {config.siteName}
-            </Link>
-          </div>
-        </div>
-
-        <div
-          className={clsx(" w-full h-44", "")}
-          style={{
-            backgroundImage: `url('/flowerspath.svg')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        ></div>
-      </div>
+      <Perfection />
 
       {/* 
         <div className='px-2 pb-10 bg-secondBg pt-2'>
